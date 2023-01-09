@@ -7,8 +7,13 @@ package MyApp;
 import Database.Data_Tickets;
 import Database.MySQLConnector;
 import Database.Tickets;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;
+import java.sql.Timestamp;
+import javax.swing.UIManager;
 
 /**
  *
@@ -66,7 +71,7 @@ public class MainMenu extends javax.swing.JFrame {
         ticketTypeComboBox1 = new javax.swing.JComboBox<>();
         priorityComboBox1 = new javax.swing.JComboBox<>();
         depComboBox1 = new javax.swing.JComboBox<>();
-        asigneeComboBox1 = new javax.swing.JComboBox<>();
+        assigneeComboBox1 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         newTicketName = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -89,6 +94,7 @@ public class MainMenu extends javax.swing.JFrame {
         backBttn5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Main Menu");
 
         optionsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -394,13 +400,13 @@ public class MainMenu extends javax.swing.JFrame {
         ticketNumberLbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ticketNumberLbl2.setText("Ticket Number");
 
-        ticketTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Type" }));
+        ticketTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Request", "Support" }));
 
-        priorityComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Priority" }));
+        priorityComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Low", "Moderate", "High" }));
 
-        depComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Department" }));
+        depComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing" }));
 
-        asigneeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asignee" }));
+        assigneeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Miguel", "Paul", "Erin", "Ryoji", "Cy", "Jay" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -409,7 +415,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(asigneeComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assigneeComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ticketNumberLbl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ticketTypeComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(priorityComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -428,7 +434,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(depComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(asigneeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(assigneeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -442,6 +448,11 @@ public class MainMenu extends javax.swing.JFrame {
         jScrollPane5.setViewportView(createTicketTxtArea);
 
         createTicketBttn.setText("Create Ticket");
+        createTicketBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createTicketBttnActionPerformed(evt);
+            }
+        });
 
         backBttn4.setText("Back");
         backBttn4.addActionListener(new java.awt.event.ActionListener() {
@@ -741,6 +752,25 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_allTicketTableMouseClicked
 
+    private void createTicketBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTicketBttnActionPerformed
+        // TODO add your handling code here:
+        long now = System.currentTimeMillis();
+        Timestamp tstamp = new Timestamp(now);
+        String table = "alltickets";
+        String TicketName = newTicketName.getText();
+        String TicketDesc = createTicketTxtArea.getText();
+        String TicketType = ticketTypeComboBox1.getSelectedItem().toString();
+        String PriorityLevel = priorityComboBox1.getSelectedItem().toString();
+        String AssignedDepartment = depComboBox1.getSelectedItem().toString();
+        String AssignedPersonnel = assigneeComboBox1.getSelectedItem().toString();
+        String DateCreated = java.time.LocalDate.now().toString();
+        String DateUpdated = tstamp.toString();
+        String Status = "Pending";        
+        Data_Tickets ticket = new Data_Tickets();
+        Tickets information = new Tickets(TicketName,TicketDesc,TicketType,PriorityLevel,AssignedDepartment,AssignedPersonnel,DateCreated,DateUpdated,Status);
+        ticket.addRow(table, information);
+    }//GEN-LAST:event_createTicketBttnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -769,11 +799,16 @@ public class MainMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        try{
+        UIManager.setLookAndFeel( new FlatIntelliJLaf() );
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenu().setVisible(true);
             }
         });
+        }catch( Exception ex ) {
+                System.err.println( "Failed to initialize LaF" );
+            }  
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -781,7 +816,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton allTicketsBttn;
     private javax.swing.JPanel allTicketsPanel;
     private javax.swing.JComboBox<String> asigneeComboBox;
-    private javax.swing.JComboBox<String> asigneeComboBox1;
+    private javax.swing.JComboBox<String> assigneeComboBox1;
     private javax.swing.JButton backBttn1;
     private javax.swing.JButton backBttn2;
     private javax.swing.JButton backBttn3;

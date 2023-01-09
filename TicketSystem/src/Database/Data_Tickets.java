@@ -103,9 +103,9 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            //String qry = "INSERT INTO " + table + "(INQUIREDATE, NAME, EMAIL, PHONENUM, AGE, UNITTYPE, ACQUIREMETHOD, PRICERANGE, PAYSCHEME)" +  " VALUES ('" + ticket.getDate()+ "', '" + ticket.getName() + "', '" + ticket.getEmail() + "', '" + ticket.getPhoneNum() + "', " + ticket.getAge() + ", '" + ticket.getUnitType() + "', '" + ticket.getAcqMethod() + "' ,'" + ticket.getPrice() + "', '" + ticket.getPayScheme() + "')";
-            //System.out.println(qry);
-            //myStmt.executeUpdate(qry);
+            String qry = "INSERT INTO " + table + "(TicketID, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status)" +  " VALUES ('" + ticket.getId()+ "', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '" + ticket.getStatus()+ "')";
+            System.out.println(qry);
+            myStmt.executeUpdate(qry);
             myStmt.close();
             JOptionPane.showMessageDialog(null, "Entry added");            
         }
@@ -119,9 +119,9 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            //String qry = "UPDATE " + table + " SET INQUIREDATE = " + ticket.getDate() + ", NAME = '" + ticket.getEmail() + "', EMAIL = '" + ticket.getEmail() + "', PHONENUM = '" + ticket.getPhoneNum() + "', AGE = '" + ticket.getAge() + "', UNITTYPE = '" + ticket.getUnitType() + "', ACQUIREMETHOD = '" + ticket.getAcqMethod() + "', PRICERANGE = '" + ticket.getPrice() + "', PAYSCHEME = '" + ticket.getPayScheme() + "' WHERE NUM = " + "'" + ticket.getNum() + "'";
-            //System.out.println(qry);
-            //myStmt.executeUpdate(qry);
+            String qry = "UPDATE " + table + " SET SubjectTitle = " + ticket.getTitle() + ", SubjectDesc = '" + ticket.getDesc() + "', TicketType = '" + ticket.getType() + "', PriorityLevel = '" + ticket.getPriority() + "', AssignedDepartment = '" + ticket.getDepartment() + "', AssignedPersonnel = '" + ticket.getPersonnel() + "', DateCreated = '" + ticket.getDateCreated() + "', DateUpdated = '" + ticket.getDateUpdated() + "', Status = '" + ticket.getStatus() + "' WHERE TicketID = " + "'" + ticket.getId() + "'";
+            System.out.println(qry);
+            myStmt.executeUpdate(qry);
             myStmt.close();
             JOptionPane.showMessageDialog(null, "Entry updated");            
         }

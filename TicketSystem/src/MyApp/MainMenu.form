@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Main Menu"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -536,7 +537,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="asigneeComboBox1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="assigneeComboBox1" alignment="0" max="32767" attributes="0"/>
                               <Component id="ticketNumberLbl2" alignment="0" max="32767" attributes="0"/>
                               <Component id="ticketTypeComboBox1" alignment="0" max="32767" attributes="0"/>
                               <Component id="priorityComboBox1" alignment="0" max="32767" attributes="0"/>
@@ -558,7 +559,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="depComboBox1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="asigneeComboBox1" min="-2" max="-2" attributes="0"/>
+                          <Component id="assigneeComboBox1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -574,8 +575,9 @@
                 <Component class="javax.swing.JComboBox" name="ticketTypeComboBox1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
-                        <StringItem index="0" value="Type"/>
+                      <StringArray count="2">
+                        <StringItem index="0" value="Request"/>
+                        <StringItem index="1" value="Support"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -586,8 +588,10 @@
                 <Component class="javax.swing.JComboBox" name="priorityComboBox1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
-                        <StringItem index="0" value="Priority"/>
+                      <StringArray count="3">
+                        <StringItem index="0" value="Low"/>
+                        <StringItem index="1" value="Moderate"/>
+                        <StringItem index="2" value="High"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -598,8 +602,14 @@
                 <Component class="javax.swing.JComboBox" name="depComboBox1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
-                        <StringItem index="0" value="Department"/>
+                      <StringArray count="7">
+                        <StringItem index="0" value="Technical"/>
+                        <StringItem index="1" value="Financial"/>
+                        <StringItem index="2" value="Operations"/>
+                        <StringItem index="3" value="Legal"/>
+                        <StringItem index="4" value="Engineering"/>
+                        <StringItem index="5" value="Logistics"/>
+                        <StringItem index="6" value="Marketing"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -607,11 +617,16 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="asigneeComboBox1">
+                <Component class="javax.swing.JComboBox" name="assigneeComboBox1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
-                        <StringItem index="0" value="Asignee"/>
+                      <StringArray count="6">
+                        <StringItem index="0" value="Miguel"/>
+                        <StringItem index="1" value="Paul"/>
+                        <StringItem index="2" value="Erin"/>
+                        <StringItem index="3" value="Ryoji"/>
+                        <StringItem index="4" value="Cy"/>
+                        <StringItem index="5" value="Jay"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -702,6 +717,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Create Ticket"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createTicketBttnActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="backBttn4">
                   <Properties>

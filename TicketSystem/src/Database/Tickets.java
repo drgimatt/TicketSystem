@@ -33,6 +33,19 @@ public class Tickets {
         this.status = status;
     }
 
+    public Tickets(String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
+        this.title = title;
+        this.desc = desc;
+        this.type = type;
+        this.priority = priority;
+        this.department = department;
+        this.personnel = personnel;
+        this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
+        this.status = status;
+    }
+    
+    
     public int getId() {
         return id;
     }

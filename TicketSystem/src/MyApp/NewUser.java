@@ -4,9 +4,11 @@
  */
 package MyApp;
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import Database.Credentials;
 import Database.Data_Credentials;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -291,8 +293,6 @@ public class NewUser extends javax.swing.JFrame {
     private void cancelBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBttn1ActionPerformed
         // TODO add your handling code here:
 
-        
-        
         login = new Login();
         login.setVisible(true);
         dispose();
@@ -327,11 +327,16 @@ public class NewUser extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        try{
+        UIManager.setLookAndFeel( new FlatIntelliJLaf() );
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NewUser().setVisible(true);
             }
         });
+        }catch( Exception ex ) {
+                System.err.println( "Failed to initialize LaF" );
+            }    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

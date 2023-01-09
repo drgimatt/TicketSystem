@@ -6,10 +6,12 @@ package MyApp;
 
 import Database.Data_Credentials;
 import Database.MySQLConnector;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -250,11 +252,16 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        try{
+        UIManager.setLookAndFeel( new FlatIntelliJLaf() );
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
             }
         });
+        }catch( Exception ex ) {
+                System.err.println( "Failed to initialize LaF" );
+            }  
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
