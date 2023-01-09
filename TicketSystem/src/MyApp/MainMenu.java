@@ -4,6 +4,12 @@
  */
 package MyApp;
 
+import Database.Data_Tickets;
+import Database.MySQLConnector;
+import Database.Tickets;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author True Gaming
@@ -15,10 +21,13 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
+        FrameCenter.centerJFrame(this);
     }
     
     Login login;
-
+    private Data_Tickets mySql =new Data_Tickets();
+    private ArrayList<Tickets> ticketsArray;
+    DefaultTableModel model;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,11 +50,11 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         myTicketsPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        myTicketTable = new javax.swing.JTable();
         backBttn1 = new javax.swing.JButton();
         allTicketsPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        allTicketTable = new javax.swing.JTable();
         backBttn2 = new javax.swing.JButton();
         solvedTicketsPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -188,7 +197,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         parentPanel.add(defPanel, "card2");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        myTicketTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -215,7 +224,7 @@ public class MainMenu extends javax.swing.JFrame {
                 "Ticket Number", "Ticket Type", "Priority", "Department", "Date Updated"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(myTicketTable);
 
         backBttn1.setText("Back");
         backBttn1.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +254,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         parentPanel.add(myTicketsPanel, "card3");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        allTicketTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -269,7 +278,7 @@ public class MainMenu extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Updated", "Asignee"
+                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Updated", "Assignee"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -280,7 +289,7 @@ public class MainMenu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(allTicketTable);
 
         backBttn2.setText("Back");
         backBttn2.addActionListener(new java.awt.event.ActionListener() {
@@ -334,7 +343,7 @@ public class MainMenu extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Solved", "Asignee"
+                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Solved", "Assignee"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -647,6 +656,16 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(allTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
+        
+        MySQLConnector connector;
+        connector = MySQLConnector.getInstance();
+        connector.getConnection();
+        ticketsArray = mySql.ShowRec("alltickets");    
+        model=(DefaultTableModel) allTicketTable.getModel();
+        model.setRowCount(0);
+        for(Tickets t: ticketsArray) {   
+        model.addRow(new Object[] {t.getId(),t.getType(), t.getPriority(),t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
+        }
     }//GEN-LAST:event_allTicketsBttnActionPerformed
 
     private void solvedTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solvedTicketsActionPerformed
@@ -741,6 +760,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable allTicketTable;
     private javax.swing.JButton allTicketsBttn;
     private javax.swing.JPanel allTicketsPanel;
     private javax.swing.JComboBox<String> asigneeComboBox;
@@ -770,10 +790,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JButton logoutBttn;
+    private javax.swing.JTable myTicketTable;
     private javax.swing.JButton myTicketsBttn;
     private javax.swing.JPanel myTicketsPanel;
     private javax.swing.JTextField newTicketName;

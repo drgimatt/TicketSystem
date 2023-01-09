@@ -27,6 +27,25 @@ public class Credentials {
     private String department;
     private String position;
 
+    public Credentials(String empnum, String u_name, String pass, String email, String f_name, String m_name, String l_name, int age, String bday, String phonenum, String gender, String residence, String actType, String startdate, String department, String position) {
+        this.empnum = empnum;
+        this.u_name = u_name;
+        this.pass = pass;
+        this.email = email;
+        this.f_name = f_name;
+        this.m_name = m_name;
+        this.l_name = l_name;
+        this.age = age;
+        this.bday = bday;
+        this.phonenum = phonenum;
+        this.gender = gender;
+        this.residence = residence;
+        this.actType = actType;
+        this.startdate = startdate;
+        this.department = department;
+        this.position = position;
+    }
+
     public Credentials(int num, String empnum, String u_name, String pass, String email, String f_name, String m_name, String l_name, int age, String bday, String phonenum, String gender, String residence, String actType, String startdate, String department, String position) {
         this.num = num;
         this.empnum = empnum;

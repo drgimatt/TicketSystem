@@ -47,7 +47,7 @@ public class Data_Credentials implements Data<Credentials>{
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            //String qry = "CREATE TABLE " + table + "(ROOM_NUM INT NOT NULL, TYPE VARCHAR(45), LAND_AREA INT, STATUS VARCHAR(45), TENANT_NAME VARCHAR(50), AGENT_NAME VARCHAR(50), PRICE DOUBLE, PAY_METHOD VARCHAR(45), PAY_SCHEME VARCHAR(45), PRIMARY KEY(ROOM_NUM))";
+            //String qry = "CREATE TABLE " + table + "()";
             //myStmt.executeUpdate(qry);
 	    //myStmt.close();
             JOptionPane.showMessageDialog(null, "Table created");            
@@ -79,7 +79,7 @@ public class Data_Credentials implements Data<Credentials>{
         try{
             cont.getConnection();            
             myStmt=cont.getConnection().createStatement();
-            String qry = "INSERT INTO credentials VALUES (" + user.getNum() + ", '" + user.getEmpnum() + "', '" + user.getU_name() + "', '" + user.getPass() + "', '" + user.getEmail() + "', '" + user.getF_name() + "', '" + user.getM_name() + "', " + user.getL_name() + ", '" + user.getAge() + "', " + user.getBday() + ", '" + user.getPhonenum() + "', '" + user.getGender() +"', '" + user.getResidence() + "', '" + user.getActType() + "', '" + user.getStartdate() + "', '" + user.getDepartment() + "', '" + user.getPosition() + "')" ;
+            String qry = "INSERT INTO credentials VALUES (" + user.getNum() + ", '" + user.getEmpnum() + "', '" + user.getU_name() + "', '" + user.getPass() + "', '" + user.getEmail() + "', '" + user.getF_name() + "', '" + user.getM_name() + "', '" + user.getL_name() + "', '" + user.getAge() + "', '" + user.getBday() + "', '" + user.getPhonenum() + "', '" + user.getGender() +"', '" + user.getResidence() + "', '" + user.getActType() + "', '" + user.getStartdate() + "', '" + user.getDepartment() + "', '" + user.getPosition() + "')" ;
             System.out.println(qry);
             myStmt.executeUpdate(qry);
 	    myStmt.close();

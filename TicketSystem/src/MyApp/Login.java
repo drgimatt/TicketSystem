@@ -4,6 +4,13 @@
  */
 package MyApp;
 
+import Database.Data_Credentials;
+import Database.MySQLConnector;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author True Gaming
@@ -15,6 +22,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        FrameCenter.centerJFrame(this);
     }
     NewUser newUser;
     MainMenu mainMenu;
@@ -166,9 +174,46 @@ public class Login extends javax.swing.JFrame {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
         
-        mainMenu = new MainMenu();
-        mainMenu.setVisible(true);
-        dispose();
+        PreparedStatement ps;
+        ResultSet rs;
+        Data_Credentials login = new Data_Credentials();
+        MySQLConnector connector;
+        connector = MySQLConnector.getInstance();
+        String user=usernameFld.getText();
+        String pass=passwordFld.getText();
+        
+       if (user.equals("") || pass.equals("")){
+           JOptionPane.showMessageDialog(null, "All fields must not be blank!","Error",JOptionPane.ERROR_MESSAGE);
+       } else{
+        String qry = "SELECT * FROM credentials WHERE username='" + user + "' && password = '" + pass + "'";
+       try{
+        ps = connector.getConnection().prepareStatement(qry);
+        rs = ps.executeQuery();
+        if(rs.next()){
+            String x = rs.getString("acctype");
+        if(x.equals("Administrator"))
+            {
+                MainMenu admin = new MainMenu();
+                admin.show();
+            }
+        else if(x.equals("Employee"))
+            {
+//                MainMenu employee = new MainMenu(); // implement different menu for employee
+//                employee.show();            
+                JOptionPane.showMessageDialog(null,"This prompt confirms that the information provided by the user and on the database are a match.","Employee Login Success",JOptionPane.INFORMATION_MESSAGE);
+            }
+            dispose();
+            usernameFld.setText("");
+            passwordFld.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "The credentials provided doesn't match!","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
         
     }//GEN-LAST:event_loginBtnActionPerformed
 
