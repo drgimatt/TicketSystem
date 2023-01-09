@@ -289,6 +289,11 @@ public class MainMenu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        allTicketTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                allTicketTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(allTicketTable);
 
         backBttn2.setText("Back");
@@ -723,6 +728,18 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.repaint();
         parentPanel.revalidate();
     }//GEN-LAST:event_backBttn5ActionPerformed
+
+    private void allTicketTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allTicketTableMouseClicked
+        // TODO add your handling code here:
+        int row = allTicketTable.rowAtPoint(evt.getPoint());
+        int col = allTicketTable.columnAtPoint(evt.getPoint());
+        if (row >= 0 && col >= 0) {
+            parentPanel.removeAll();
+            parentPanel.add(indivTicketPanel);
+            parentPanel.repaint();
+            parentPanel.revalidate();
+        }
+    }//GEN-LAST:event_allTicketTableMouseClicked
 
     /**
      * @param args the command line arguments
