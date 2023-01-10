@@ -89,9 +89,10 @@ public class MainMenu extends javax.swing.JFrame {
         ticketNameTxtField = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         ticketTxtArea = new javax.swing.JTextArea();
-        prevUpdates = new javax.swing.JLabel();
         updateComboBox1 = new javax.swing.JComboBox<>();
         backBttn5 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
@@ -567,8 +568,6 @@ public class MainMenu extends javax.swing.JFrame {
         ticketTxtArea.setRows(5);
         jScrollPane4.setViewportView(ticketTxtArea);
 
-        prevUpdates.setText("Previous updates");
-
         updateComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Update Ticket", "Close Ticket" }));
 
         backBttn5.setText("Back");
@@ -578,6 +577,11 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane6.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -585,7 +589,6 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(prevUpdates, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane4)
                     .addComponent(ticketNameTxtField))
                 .addContainerGap())
@@ -597,6 +600,10 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(198, 198, 198)
                 .addComponent(backBttn5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,13 +612,13 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(ticketNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(prevUpdates, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(updateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backBttn5)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout indivTicketPanelLayout = new javax.swing.GroupLayout(indivTicketPanel);
@@ -842,7 +849,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton logoutBttn;
     private javax.swing.JTable myTicketTable;
     private javax.swing.JButton myTicketsBttn;
@@ -850,7 +859,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTextField newTicketName;
     private javax.swing.JPanel optionsPanel;
     private javax.swing.JPanel parentPanel;
-    private javax.swing.JLabel prevUpdates;
     private javax.swing.JComboBox<String> priorityComboBox;
     private javax.swing.JComboBox<String> priorityComboBox1;
     private javax.swing.JButton solvedTickets;

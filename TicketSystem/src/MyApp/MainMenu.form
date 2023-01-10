@@ -874,7 +874,6 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="prevUpdates" max="32767" attributes="0"/>
                               <Component id="jScrollPane4" alignment="1" max="32767" attributes="0"/>
                               <Component id="ticketNameTxtField" alignment="1" max="32767" attributes="0"/>
                           </Group>
@@ -885,10 +884,15 @@
                           <Component id="updateComboBox1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                           <Component id="backBttn5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -899,13 +903,13 @@
                           <Component id="ticketNameTxtField" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane4" min="-2" pref="106" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="prevUpdates" min="-2" pref="239" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" min="-2" pref="234" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="updateComboBox1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="backBttn5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="46" max="32767" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -932,11 +936,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="prevUpdates">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Previous updates"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JComboBox" name="updateComboBox1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -958,6 +957,22 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBttn5ActionPerformed"/>
                   </Events>
                 </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="jTextArea1">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="rows" type="int" value="5"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
               </SubComponents>
             </Container>
           </SubComponents>
