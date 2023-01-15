@@ -3,10 +3,11 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -28,155 +29,186 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="78" max="32767" attributes="0"/>
-              </Group>
               <Group type="102" attributes="0">
+                  <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="usernameFld" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="passwordFld" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="loginBtn" min="-2" pref="106" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                                  <Component id="exitBtn" min="-2" pref="106" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="descriptionText" min="-2" pref="520" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
-                          <Component id="createAccount" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="titleText" min="-2" pref="520" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="usernameText" min="-2" max="-2" attributes="0"/>
+                      <Component id="usernameFld" min="-2" pref="290" max="-2" attributes="0"/>
+                  </Group>
               </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="620" pref="620" max="-2" attributes="0"/>
+                  <Component id="passwordFld" min="-2" pref="290" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="690" pref="690" max="-2" attributes="0"/>
+                  <Component id="loginBtn" min="-2" pref="140" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="620" pref="620" max="-2" attributes="0"/>
+                  <Component id="passwordText" min="-2" pref="130" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="730" pref="730" max="-2" attributes="0"/>
+                  <Component id="exitBtn" min="-2" pref="60" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="620" pref="620" max="-2" attributes="0"/>
+                  <Component id="LoginText" min="-2" pref="280" max="-2" attributes="0"/>
+              </Group>
+              <Component id="LoginBackground" min="-2" pref="970" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="55" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="42" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="usernameFld" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="150" pref="150" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
+                          <Component id="descriptionText" min="-2" pref="42" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="titleText" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
+                          <Component id="usernameText" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
+                          <Component id="usernameFld" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="passwordFld" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="loginBtn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="exitBtn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="createAccount" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                  <Component id="passwordFld" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
+                  <Component id="loginBtn" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="300" pref="300" max="-2" attributes="0"/>
+                  <Component id="passwordText" min="-2" pref="20" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="440" pref="440" max="-2" attributes="0"/>
+                  <Component id="exitBtn" min="-2" pref="30" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
+                  <Component id="LoginText" min="-2" pref="80" max="-2" attributes="0"/>
+              </Group>
+              <Component id="LoginBackground" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="createAccount">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Create New Account"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createAccountActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="titleText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Sitka Heading" size="36" style="1"/>
+              <Font name="Myanmar Text" size="100" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="WinQueue"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="LoginText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+              <Font name="Myanmar Text" size="30" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Log in"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="descriptionText">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Myanmar Text" size="20" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ticket Management System for Winrock International"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="passwordText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+              <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Username: "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Password:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="usernameFld">
+        <Component class="javax.swing.JLabel" name="usernameText">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Username:"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="loginBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="LOGIN"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Image/LoginButton.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginBtnActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JTextField" name="usernameFld">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JButton" name="exitBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="EXIT"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Image/exitButton.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordFld">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="LoginBackground">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Image/LoginBackground.png"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
