@@ -50,6 +50,7 @@ public class Login extends javax.swing.JFrame {
         LoginBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("User Login");
         setResizable(false);
 
         titleText.setFont(new java.awt.Font("Myanmar Text", 1, 100)); // NOI18N
@@ -74,22 +75,22 @@ public class Login extends javax.swing.JFrame {
         usernameText.setText("Username:");
 
         loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/LoginButton.png"))); // NOI18N
+        loginBtn.setBorderPainted(false);
+        loginBtn.setContentAreaFilled(false);
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
             }
         });
 
-        usernameFld.setOpaque(false);
-
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exitButton.png"))); // NOI18N
+        exitBtn.setBorderPainted(false);
+        exitBtn.setContentAreaFilled(false);
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitBtnActionPerformed(evt);
             }
         });
-
-        passwordFld.setOpaque(false);
 
         LoginBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/LoginBackground.png"))); // NOI18N
 
@@ -180,35 +181,34 @@ public class Login extends javax.swing.JFrame {
         Data_Credentials login = new Data_Credentials();
         MySQLConnector connector;
         connector = MySQLConnector.getInstance();
-        String user=usernameFld.getText();
-        String pass=passwordFld.getText();
+        String username=usernameFld.getText();
+        String password=passwordFld.getText();
         
-       if (user.equals("") || pass.equals("")){
+       if (username.equals("") || password.equals("")){
            JOptionPane.showMessageDialog(null, "All fields must not be blank!","Error",JOptionPane.ERROR_MESSAGE);
        } else{
-        String qry = "SELECT * FROM credentials WHERE username='" + user + "' && password = '" + pass + "'";
+        String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + password + "'";
        try{
         ps = connector.getConnection().prepareStatement(qry);
         rs = ps.executeQuery();
         if(rs.next()){
-            String x = rs.getString("acctype");
-        if(x.equals("Administrator"))
+            String acctype = rs.getString("acctype");
+        if(acctype.equals("Administrator") || acctype.equals("Employee"))
             {
-                MainMenu admin = new MainMenu();
-                admin.show();
-            }
-        else if(x.equals("Employee"))
-            {
-//                MainMenu employee = new MainMenu(); // implement different menu for employee
-//                employee.show();            
-                JOptionPane.showMessageDialog(null,"This prompt confirms that the information provided by the user and on the database are a match.","Employee Login Success",JOptionPane.INFORMATION_MESSAGE);
+                MainMenu user = new MainMenu();
+                //insert pass information here for acctype, firstname, lastname, department
+                user.setAcctype(rs.getString("acctype"));
+                user.setFirstname(rs.getString("firstname"));
+                user.setLastname(rs.getString("lastname"));
+                user.setDepartment(rs.getString("department"));
+                user.show();
             }
             dispose();
-            usernameFld.setText("");
-            passwordFld.setText("");
         }
         else{
             JOptionPane.showMessageDialog(null, "The credentials provided doesn't match!","Error",JOptionPane.ERROR_MESSAGE);
+            usernameFld.setText("");
+            passwordFld.setText("");
         }
         
         } catch(SQLException ex){

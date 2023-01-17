@@ -10,7 +10,7 @@ import Database.Tickets;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import java.time.LocalDateTime;  
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.sql.Timestamp;
 import javax.swing.UIManager;
@@ -28,11 +28,12 @@ public class MainMenu extends javax.swing.JFrame {
         initComponents();
         FrameCenter.centerJFrame(this);
     }
-    
     Login login;
-    private Data_Tickets mySql =new Data_Tickets();
+    private String acctype, firstname, lastname, department;
+    private Data_Tickets mySql = new Data_Tickets();
     private ArrayList<Tickets> ticketsArray;
     DefaultTableModel model;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,9 +176,8 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(solvedTickets, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(createTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(logoutBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logoutBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionsPanelLayout.setVerticalGroup(
@@ -193,10 +193,10 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(createTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, Short.MAX_VALUE))
         );
 
         parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -461,9 +461,9 @@ public class MainMenu extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
             .addGroup(solvedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, solvedTicketsPanelLayout.createSequentialGroup()
-                    .addContainerGap(259, Short.MAX_VALUE)
+                    .addContainerGap(261, Short.MAX_VALUE)
                     .addComponent(jLabel8)
-                    .addContainerGap(259, Short.MAX_VALUE)))
+                    .addContainerGap(261, Short.MAX_VALUE)))
         );
         solvedTicketsPanelLayout.setVerticalGroup(
             solvedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -613,7 +613,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(createTicketBttn)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout createTicketPanelLayout = new javax.swing.GroupLayout(createTicketPanel);
@@ -742,13 +742,10 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ticketNameTxtField))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane6)))
+                    .addComponent(ticketNameTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane6))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -805,14 +802,14 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(optionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(optionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(optionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(optionsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -832,15 +829,15 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(allTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
-        
+
         MySQLConnector connector;
         connector = MySQLConnector.getInstance();
         connector.getConnection();
-        ticketsArray = mySql.ShowRec("alltickets");    
-        model=(DefaultTableModel) allTicketTable.getModel();
+        ticketsArray = mySql.ShowRec("alltickets");
+        model = (DefaultTableModel) allTicketTable.getModel();
         model.setRowCount(0);
-        for(Tickets t: ticketsArray) {   
-        model.addRow(new Object[] {t.getId(),t.getType(), t.getPriority(),t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
+        for (Tickets t : ticketsArray) {
+            model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
         }
     }//GEN-LAST:event_allTicketsBttnActionPerformed
 
@@ -861,11 +858,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_createTicketActionPerformed
 
     private void logoutBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBttnActionPerformed
-       
+
         login = new Login();
         login.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_logoutBttnActionPerformed
 
     private void allTicketTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allTicketTableMouseClicked
@@ -893,9 +890,9 @@ public class MainMenu extends javax.swing.JFrame {
         String AssignedPersonnel = assigneeComboBox1.getSelectedItem().toString();
         String DateCreated = java.time.LocalDate.now().toString();
         String DateUpdated = tstamp.toString();
-        String Status = "Pending";        
+        String Status = "Pending";
         Data_Tickets ticket = new Data_Tickets();
-        Tickets information = new Tickets(TicketName,TicketDesc,TicketType,PriorityLevel,AssignedDepartment,AssignedPersonnel,DateCreated,DateUpdated,Status);
+        Tickets information = new Tickets(TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status);
         ticket.addRow(table, information);
     }//GEN-LAST:event_createTicketBttnActionPerformed
 
@@ -931,16 +928,16 @@ public class MainMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        try{
-        UIManager.setLookAndFeel( new FlatIntelliJLaf() );
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenu().setVisible(true);
-            }
-        });
-        }catch( Exception ex ) {
-                System.err.println( "Failed to initialize LaF" );
-            }  
+        try {
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainMenu().setVisible(true);
+                }
+            });
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1006,4 +1003,48 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ticketTypeComboBox1;
     private javax.swing.JComboBox<String> updateComboBox1;
     // End of variables declaration//GEN-END:variables
+
+    public void setAcctype(String acctype) {
+        this.acctype = acctype;
+        setInterface(acctype);
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getAcctype() {
+        return acctype;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    protected void setInterface(String x) {
+        System.out.println("User Type: " + x);
+        if ("Employee".equals(x)) {
+            jButton1.setVisible(false);
+        }
+        if ("Administrator".equals(x)) {
+            jButton1.setVisible(true);
+        }
+    }
+
 }
