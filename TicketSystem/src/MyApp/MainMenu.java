@@ -52,13 +52,6 @@ public class MainMenu extends javax.swing.JFrame {
         logoutBttn = new javax.swing.JButton();
         manageUserButton = new javax.swing.JButton();
         parentPanel = new javax.swing.JPanel();
-        userManagementPanel = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        createUserButton = new javax.swing.JButton();
-        updateUserButton = new javax.swing.JButton();
-        deleteUserButton = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
         defPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,6 +60,13 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        userManagementPanel = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        createUserButton = new javax.swing.JButton();
+        updateUserButton = new javax.swing.JButton();
+        deleteUserButton = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         myTicketsPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         myTicketTable = new javax.swing.JTable();
@@ -209,78 +209,6 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         parentPanel.setLayout(new java.awt.CardLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "First Name", "Middle Name", "Last Name", "Mobile Number", "Email", "Username", "Password", "Account Type"
-            }
-        ));
-        jScrollPane7.setViewportView(jTable1);
-
-        createUserButton.setBackground(new java.awt.Color(0, 153, 51));
-        createUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        createUserButton.setForeground(new java.awt.Color(255, 255, 255));
-        createUserButton.setText("CREATE");
-        createUserButton.setBorder(new javax.swing.border.MatteBorder(null));
-
-        updateUserButton.setBackground(new java.awt.Color(204, 153, 0));
-        updateUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        updateUserButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateUserButton.setText("UPDATE");
-        updateUserButton.setBorder(new javax.swing.border.MatteBorder(null));
-
-        deleteUserButton.setBackground(new java.awt.Color(153, 0, 0));
-        deleteUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        deleteUserButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteUserButton.setText("DELETE");
-        deleteUserButton.setBorder(new javax.swing.border.MatteBorder(null));
-
-        jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("User Manager");
-
-        javax.swing.GroupLayout userManagementPanelLayout = new javax.swing.GroupLayout(userManagementPanel);
-        userManagementPanel.setLayout(userManagementPanelLayout);
-        userManagementPanelLayout.setHorizontalGroup(
-            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
-                        .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(257, 257, 257))))
-        );
-        userManagementPanelLayout.setVerticalGroup(
-            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userManagementPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-        );
-
-        parentPanel.add(userManagementPanel, "card8");
-
         defPanel.setForeground(new java.awt.Color(0, 153, 255));
         defPanel.setPreferredSize(new java.awt.Dimension(610, 349));
 
@@ -359,6 +287,78 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         parentPanel.add(defPanel, "card2");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "First Name", "Middle Name", "Last Name", "Mobile Number", "Email", "Username", "Password", "Account Type"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable1);
+
+        createUserButton.setBackground(new java.awt.Color(0, 153, 51));
+        createUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        createUserButton.setForeground(new java.awt.Color(255, 255, 255));
+        createUserButton.setText("CREATE");
+        createUserButton.setBorder(new javax.swing.border.MatteBorder(null));
+
+        updateUserButton.setBackground(new java.awt.Color(204, 153, 0));
+        updateUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        updateUserButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateUserButton.setText("UPDATE");
+        updateUserButton.setBorder(new javax.swing.border.MatteBorder(null));
+
+        deleteUserButton.setBackground(new java.awt.Color(153, 0, 0));
+        deleteUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        deleteUserButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteUserButton.setText("DELETE");
+        deleteUserButton.setBorder(new javax.swing.border.MatteBorder(null));
+
+        jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("User Manager");
+
+        javax.swing.GroupLayout userManagementPanelLayout = new javax.swing.GroupLayout(userManagementPanel);
+        userManagementPanel.setLayout(userManagementPanelLayout);
+        userManagementPanelLayout.setHorizontalGroup(
+            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
+                        .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(257, 257, 257))))
+        );
+        userManagementPanelLayout.setVerticalGroup(
+            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userManagementPanelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+        );
+
+        parentPanel.add(userManagementPanel, "card8");
 
         myTicketsPanel.setPreferredSize(new java.awt.Dimension(610, 349));
 
