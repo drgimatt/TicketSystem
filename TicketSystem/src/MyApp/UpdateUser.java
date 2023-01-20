@@ -14,19 +14,19 @@ import javax.swing.UIManager;
  *
  * @author True Gaming
  */
-public class NewUser extends javax.swing.JFrame {
+public class UpdateUser extends javax.swing.JFrame {
 
     /**
      * Creates new form NewUser
      */
-    public NewUser() {
+    public UpdateUser() {
         initComponents();
         FrameCenter.centerJFrame(this);
         setResizable(false);
     }
     
     Login login;
-    
+    MainMenu mainMenu;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,7 +57,7 @@ public class NewUser extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         em_addfld = new javax.swing.JTextField();
-        createAccountBttn = new javax.swing.JButton();
+        updateAccountBttn = new javax.swing.JButton();
         cancelBttn1 = new javax.swing.JButton();
         passFld = new javax.swing.JPasswordField();
         passConFld = new javax.swing.JPasswordField();
@@ -78,7 +78,7 @@ public class NewUser extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Create New Account");
+        jLabel1.setText("Update Account");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Ticket Management System for Winrock International");
@@ -116,14 +116,14 @@ public class NewUser extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Email:");
 
-        createAccountBttn.setBackground(new java.awt.Color(0, 153, 51));
-        createAccountBttn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        createAccountBttn.setForeground(new java.awt.Color(255, 255, 255));
-        createAccountBttn.setText("Create New Account");
-        createAccountBttn.setBorder(new javax.swing.border.MatteBorder(null));
-        createAccountBttn.addActionListener(new java.awt.event.ActionListener() {
+        updateAccountBttn.setBackground(new java.awt.Color(0, 153, 51));
+        updateAccountBttn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        updateAccountBttn.setForeground(new java.awt.Color(255, 255, 255));
+        updateAccountBttn.setText("Update Account");
+        updateAccountBttn.setBorder(new javax.swing.border.MatteBorder(null));
+        updateAccountBttn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createAccountBttnActionPerformed(evt);
+                updateAccountBttnActionPerformed(evt);
             }
         });
 
@@ -141,12 +141,14 @@ public class NewUser extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(423, 423, 423)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                .addGap(171, 171, 171)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usernameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,11 +158,6 @@ public class NewUser extends javax.swing.JFrame {
                 .addGap(57, 57, 57))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,13 +174,17 @@ public class NewUser extends javax.swing.JFrame {
                                     .addComponent(m_numfld, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(em_addfld, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(createAccountBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(updateAccountBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(24, 24, 24)
                                         .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(cancelBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel9)
-                            .addComponent(jLabel10))))
+                            .addComponent(jLabel10)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,7 +233,7 @@ public class NewUser extends javax.swing.JFrame {
                             .addComponent(jLabel11))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createAccountBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateAccountBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48))
@@ -255,12 +256,12 @@ public class NewUser extends javax.swing.JFrame {
     private void cancelBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBttn1ActionPerformed
         // TODO add your handling code here:
 
-        login = new Login();
-        login.setVisible(true);
+        mainMenu = new MainMenu();
+        mainMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelBttn1ActionPerformed
 
-    private void createAccountBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountBttnActionPerformed
+    private void updateAccountBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAccountBttnActionPerformed
         // TODO add your handling code here:
         String fname = f_namefld.getText();
         String mname = m_namefld.getText();
@@ -296,7 +297,7 @@ public class NewUser extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "The passwords entered don't match!","Password Mismatch",JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_createAccountBttnActionPerformed
+    }//GEN-LAST:event_updateAccountBttnActionPerformed
 
     private void resetBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBttnActionPerformed
         // TODO add your handling code here:
@@ -320,14 +321,15 @@ public class NewUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -335,7 +337,7 @@ public class NewUser extends javax.swing.JFrame {
         UIManager.setLookAndFeel( new FlatIntelliJLaf() );
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewUser().setVisible(true);
+                new UpdateUser().setVisible(true);
             }
         });
         }catch( Exception ex ) {
@@ -346,7 +348,6 @@ public class NewUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> acctypeSel;
     private javax.swing.JButton cancelBttn1;
-    private javax.swing.JButton createAccountBttn;
     private javax.swing.JTextField em_addfld;
     private javax.swing.JTextField f_namefld;
     private javax.swing.JLabel jLabel1;
@@ -367,6 +368,7 @@ public class NewUser extends javax.swing.JFrame {
     private javax.swing.JPasswordField passConFld;
     private javax.swing.JPasswordField passFld;
     private javax.swing.JButton resetBttn;
+    private javax.swing.JButton updateAccountBttn;
     private javax.swing.JTextField usernameFld;
     // End of variables declaration//GEN-END:variables
 

@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.sql.Timestamp;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -27,8 +28,11 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         FrameCenter.centerJFrame(this);
+        setResizable(false);
     }
     Login login;
+    NewUser newUser;
+    UpdateUser updateUser;
     private String acctype, firstname, lastname, department;
     private Data_Tickets mySql = new Data_Tickets();
     private ArrayList<Tickets> ticketsArray;
@@ -62,7 +66,7 @@ public class MainMenu extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         userManagementPanel = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userManagerTable = new javax.swing.JTable();
         createUserButton = new javax.swing.JButton();
         updateUserButton = new javax.swing.JButton();
         deleteUserButton = new javax.swing.JButton();
@@ -107,15 +111,19 @@ public class MainMenu extends javax.swing.JFrame {
         ticketNameTxtField = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         ticketTxtArea = new javax.swing.JTextArea();
-        updateComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
+        updateTicketButton = new javax.swing.JButton();
+        closeTicketButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
+        setBackground(new java.awt.Color(68, 148, 220));
 
         optionsPanel.setBackground(new java.awt.Color(68, 148, 220));
+        optionsPanel.setMaximumSize(new java.awt.Dimension(179, 563));
+        optionsPanel.setMinimumSize(new java.awt.Dimension(179, 563));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/winrockLogo.png"))); // NOI18N
@@ -198,12 +206,12 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(solvedTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(createTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(manageUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logoutBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(manageUserButton)
                 .addGap(43, 43, 43)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, Short.MAX_VALUE))
+                .addComponent(logoutBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4))
         );
 
         parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -288,36 +296,48 @@ public class MainMenu extends javax.swing.JFrame {
 
         parentPanel.add(defPanel, "card2");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userManagerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "First Name", "Middle Name", "Last Name", "Mobile Number", "Email", "Username", "Password", "Account Type"
             }
         ));
-        jScrollPane7.setViewportView(jTable1);
+        jScrollPane7.setViewportView(userManagerTable);
 
         createUserButton.setBackground(new java.awt.Color(0, 153, 51));
         createUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         createUserButton.setForeground(new java.awt.Color(255, 255, 255));
         createUserButton.setText("CREATE");
         createUserButton.setBorder(new javax.swing.border.MatteBorder(null));
+        createUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createUserButtonActionPerformed(evt);
+            }
+        });
 
         updateUserButton.setBackground(new java.awt.Color(204, 153, 0));
         updateUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         updateUserButton.setForeground(new java.awt.Color(255, 255, 255));
         updateUserButton.setText("UPDATE");
         updateUserButton.setBorder(new javax.swing.border.MatteBorder(null));
+        updateUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateUserButtonActionPerformed(evt);
+            }
+        });
 
         deleteUserButton.setBackground(new java.awt.Color(153, 0, 0));
         deleteUserButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         deleteUserButton.setForeground(new java.awt.Color(255, 255, 255));
         deleteUserButton.setText("DELETE");
         deleteUserButton.setBorder(new javax.swing.border.MatteBorder(null));
+        deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserButtonActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 102, 204));
@@ -409,7 +429,7 @@ public class MainMenu extends javax.swing.JFrame {
         myTicketsPanelLayout.setVerticalGroup(
             myTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myTicketsPanelLayout.createSequentialGroup()
-                .addGap(0, 9, Short.MAX_VALUE)
+                .addGap(0, 16, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -480,7 +500,7 @@ public class MainMenu extends javax.swing.JFrame {
         allTicketsPanelLayout.setVerticalGroup(
             allTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allTicketsPanelLayout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
+                .addGap(0, 21, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -547,14 +567,14 @@ public class MainMenu extends javax.swing.JFrame {
         solvedTicketsPanelLayout.setVerticalGroup(
             solvedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, solvedTicketsPanelLayout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
             .addGroup(solvedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, solvedTicketsPanelLayout.createSequentialGroup()
-                    .addContainerGap(13, Short.MAX_VALUE)
+                    .addContainerGap(17, Short.MAX_VALUE)
                     .addComponent(jLabel8)
-                    .addContainerGap(519, Short.MAX_VALUE)))
+                    .addContainerGap(522, Short.MAX_VALUE)))
         );
 
         parentPanel.add(solvedTicketsPanel, "card5");
@@ -648,7 +668,11 @@ public class MainMenu extends javax.swing.JFrame {
         createTicketTxtArea.setRows(5);
         jScrollPane5.setViewportView(createTicketTxtArea);
 
+        createTicketBttn.setBackground(new java.awt.Color(0, 153, 51));
+        createTicketBttn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        createTicketBttn.setForeground(new java.awt.Color(255, 255, 255));
         createTicketBttn.setText("Create Ticket");
+        createTicketBttn.setBorder(new javax.swing.border.MatteBorder(null));
         createTicketBttn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createTicketBttnActionPerformed(evt);
@@ -673,13 +697,12 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(162, 162, 162))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(createTicketBttn)
-                                .addGap(208, 208, 208))))))
+                        .addComponent(jLabel7)
+                        .addGap(162, 162, 162))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(202, 202, 202))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -690,9 +713,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(newTicketName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(createTicketBttn)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(createTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout createTicketPanelLayout = new javax.swing.GroupLayout(createTicketPanel);
@@ -789,7 +812,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(depComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(asigneeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(52, 52, 52)
@@ -804,8 +827,6 @@ public class MainMenu extends javax.swing.JFrame {
         ticketTxtArea.setRows(5);
         jScrollPane4.setViewportView(ticketTxtArea);
 
-        updateComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Update Ticket", "Close Ticket" }));
-
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -816,22 +837,36 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Update/Close Ticket");
 
+        updateTicketButton.setBackground(new java.awt.Color(204, 153, 0));
+        updateTicketButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        updateTicketButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateTicketButton.setText("Update Ticket");
+        updateTicketButton.setBorder(new javax.swing.border.MatteBorder(null));
+
+        closeTicketButton.setBackground(new java.awt.Color(0, 153, 51));
+        closeTicketButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        closeTicketButton.setForeground(new java.awt.Color(255, 255, 255));
+        closeTicketButton.setText("Close Ticket");
+        closeTicketButton.setBorder(new javax.swing.border.MatteBorder(null));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(238, 238, 238)
+                .addComponent(updateTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(closeTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ticketNameTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane6))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(updateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(206, 206, 206))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ticketNameTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane6)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -842,15 +877,17 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addComponent(ticketNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(updateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(updateTicketButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(closeTicketButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(17, Short.MAX_VALUE)
@@ -881,14 +918,14 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(optionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(optionsPanel, 179, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(optionsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(optionsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -983,8 +1020,38 @@ public class MainMenu extends javax.swing.JFrame {
             parentPanel.add(userManagementPanel);
             parentPanel.repaint();
             parentPanel.revalidate();
+            manageUserButton.setVisible(false);
         // }
     }//GEN-LAST:event_manageUserButtonActionPerformed
+
+    private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
+        // TODO add your handling code here:
+        newUser = new NewUser();
+        newUser.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_createUserButtonActionPerformed
+
+    private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) userManagerTable.getModel();
+        
+        if (userManagerTable.getSelectedRowCount()==1){
+            tableModel.removeRow(userManagerTable.getSelectedRow());
+        } else {
+            if (userManagerTable.getRowCount()==0){
+                JOptionPane.showMessageDialog(this, "Table is empty.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            }
+        }
+    }//GEN-LAST:event_deleteUserButtonActionPerformed
+
+    private void updateUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateUserButtonActionPerformed
+        // TODO add your handling code here:
+        updateUser = new UpdateUser();
+        updateUser.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_updateUserButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1032,6 +1099,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel allTicketsPanel;
     private javax.swing.JComboBox<String> asigneeComboBox;
     private javax.swing.JComboBox<String> assigneeComboBox1;
+    private javax.swing.JButton closeTicketButton;
     private javax.swing.JButton createTicket;
     private javax.swing.JButton createTicketBttn;
     private javax.swing.JPanel createTicketPanel;
@@ -1069,7 +1137,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton logoutBttn;
@@ -1092,9 +1159,10 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTextArea ticketTxtArea;
     private javax.swing.JComboBox<String> ticketTypeComboBox;
     private javax.swing.JComboBox<String> ticketTypeComboBox1;
-    private javax.swing.JComboBox<String> updateComboBox1;
+    private javax.swing.JButton updateTicketButton;
     private javax.swing.JButton updateUserButton;
     private javax.swing.JPanel userManagementPanel;
+    private javax.swing.JTable userManagerTable;
     // End of variables declaration//GEN-END:variables
 
     public void setAcctype(String acctype) {
