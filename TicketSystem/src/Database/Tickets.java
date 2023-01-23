@@ -9,7 +9,7 @@ package Database;
  * @author boxro
  */
 public class Tickets {
-    private int id;
+    private String id;
     private String title;
     private String desc;
     private String type;
@@ -20,7 +20,7 @@ public class Tickets {
     private String dateUpdated;
     private String status;
 
-    public Tickets(int id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
+    public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
         this.id = id;
         this.title = title;
         this.desc = desc;
@@ -44,9 +44,12 @@ public class Tickets {
         this.dateUpdated = dateUpdated;
         this.status = status;
     }
-    
-    
-    public int getId() {
+
+    public Tickets(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
         return id;
     }
 

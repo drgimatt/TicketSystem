@@ -63,7 +63,7 @@ public class Data_Tickets implements Data<Tickets> {
 
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getInt("TicketID"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
+                ticket.add(new Tickets(rs.getString("TicketID"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
             }
             rs.close();
 	    myStmt.close();				
@@ -83,10 +83,9 @@ public class Data_Tickets implements Data<Tickets> {
             myStmt=cont.getConnection().createStatement();	
             String qry = "SELECT * FROM alltickets WHERE " + parameters;
 	    ResultSet rs = myStmt.executeQuery(qry);
-
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getInt("TicketID"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
+                ticket.add(new Tickets(rs.getString("TicketID"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
             }
             rs.close();
 	    myStmt.close();				
@@ -145,6 +144,28 @@ public class Data_Tickets implements Data<Tickets> {
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+    }
+    public int tallyCount(String parameters)
+    {
+        int tally = 0;
+        try{
+            cont.getConnection();
+            myStmt=cont.getConnection().createStatement();	
+            String qry = "SELECT COUNT(*) from " + parameters;
+	    System.out.println(qry);
+            ResultSet rs = myStmt.executeQuery(qry);
+	    while(rs.next())
+            {
+                tally = rs.getInt(1);
+            }
+            rs.close();
+	    myStmt.close();				
+        }
+	catch(SQLException ex)
+	{
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        return tally;
     }
 }
 
