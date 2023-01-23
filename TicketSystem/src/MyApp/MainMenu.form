@@ -28,7 +28,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="optionsPanel" min="179" pref="179" max="-2" attributes="0"/>
+              <Component id="optionsPanel" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="parentPanel" max="32767" attributes="0"/>
           </Group>
@@ -363,21 +363,26 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane7" alignment="0" pref="704" max="32767" attributes="0"/>
+                  <Component id="jScrollPane7" alignment="0" pref="940" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="createUserButton" min="-2" pref="103" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="updateUserButton" min="-2" pref="95" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="deleteUserButton" min="-2" pref="88" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="refreshTableButton" min="-2" pref="88" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -386,17 +391,19 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="jLabel12" min="-2" pref="42" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="createUserButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="updateUserButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="deleteUserButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="refreshTableButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -412,20 +419,41 @@
                 <Component class="javax.swing.JTable" name="userManagerTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="8" rowCount="0">
-                        <Column editable="true" title="First Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Middle Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Last Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Mobile Number" type="java.lang.Object"/>
-                        <Column editable="true" title="Email" type="java.lang.Object"/>
-                        <Column editable="true" title="Username" type="java.lang.Object"/>
-                        <Column editable="true" title="Password" type="java.lang.Object"/>
-                        <Column editable="true" title="Account Type" type="java.lang.Object"/>
+                      <Table columnCount="13" rowCount="0">
+                        <Column editable="false" title="#" type="java.lang.Object"/>
+                        <Column editable="false" title="Employee ID" type="java.lang.Object"/>
+                        <Column editable="false" title="First Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Middle Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Last Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Mobile #" type="java.lang.Object"/>
+                        <Column editable="false" title="Email" type="java.lang.Object"/>
+                        <Column editable="false" title="Birthday" type="java.lang.Object"/>
+                        <Column editable="false" title="Account Type" type="java.lang.Object"/>
+                        <Column editable="false" title="Department" type="java.lang.Object"/>
+                        <Column editable="false" title="Position" type="java.lang.Object"/>
+                        <Column editable="false" title="Start Date" type="java.lang.Object"/>
+                        <Column editable="false" title="Gender" type="java.lang.Object"/>
                       </Table>
                     </Property>
+                    <Property name="autoResizeMode" type="int" value="0"/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="5" prefWidth="30" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -441,6 +469,16 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -552,6 +590,33 @@
                 <Property name="text" type="java.lang.String" value="User Manager"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="refreshTableButton">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="99" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="REFRESH"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+                    <MatteColorBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshTableButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="To delete or update an entry, click the cell desired and press the corresponding buttons"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="myTicketsPanel">
@@ -569,7 +634,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="704" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="940" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -673,7 +738,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" alignment="0" pref="704" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="0" pref="940" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -786,12 +851,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="704" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" pref="940" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="259" max="32767" attributes="0"/>
+                          <EmptySpace pref="379" max="32767" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="259" max="32767" attributes="0"/>
+                          <EmptySpace pref="379" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -1141,7 +1206,7 @@
                                   <Component id="newTicketName" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane5" alignment="0" pref="517" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="753" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
@@ -1478,7 +1543,7 @@
                                       <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jScrollPane4" alignment="1" pref="517" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" alignment="1" pref="753" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
