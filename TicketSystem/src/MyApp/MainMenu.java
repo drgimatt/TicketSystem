@@ -1078,9 +1078,12 @@ public class MainMenu extends javax.swing.JFrame {
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         // TODO add your handling code here:
         DefaultTableModel tableModel = (DefaultTableModel) userManagerTable.getModel();
-        
         if (userManagerTable.getSelectedRowCount()==1){
-            tableModel.removeRow(userManagerTable.getSelectedRow());
+            int ans = JOptionPane.showOptionDialog(this,"Are you sure you want to delete this entry?", "Delete User", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
+            if (ans == JOptionPane.YES_OPTION){
+            creds.deleteRowSpec(tableModel.getValueAt(userManagerTable.getSelectedRow(), 0).toString());
+            updateTableDisplay();
+            }
         } else {
             if (userManagerTable.getRowCount()==0){
                 JOptionPane.showMessageDialog(this, "Table is empty.");
