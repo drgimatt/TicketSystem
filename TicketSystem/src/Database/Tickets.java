@@ -10,6 +10,7 @@ package Database;
  */
 public class Tickets {
     private String id;
+    private String revcount;
     private String title;
     private String desc;
     private String type;
@@ -20,6 +21,20 @@ public class Tickets {
     private String dateUpdated;
     private String status;
 
+    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
+        this.id = id;
+        this.revcount = revcount;
+        this.title = title;
+        this.desc = desc;
+        this.type = type;
+        this.priority = priority;
+        this.department = department;
+        this.personnel = personnel;
+        this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
+        this.status = status;
+    }    
+    
     public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
         this.id = id;
         this.title = title;
@@ -89,6 +104,11 @@ public class Tickets {
         return status;
     }
 
+    public String getRevcount() {
+        return revcount;
+    }
+
+    
 
     
 }

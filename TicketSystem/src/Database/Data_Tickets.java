@@ -4,6 +4,7 @@
  */
 package Database;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -63,7 +64,7 @@ public class Data_Tickets implements Data<Tickets> {
 
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getString("TicketID"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
+                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
             }
             rs.close();
 	    myStmt.close();				
@@ -82,10 +83,11 @@ public class Data_Tickets implements Data<Tickets> {
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();	
             String qry = parameters;
+            System.out.println(qry);
 	    ResultSet rs = myStmt.executeQuery(qry);
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getString("TicketID"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
+                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
             }
             rs.close();
 	    myStmt.close();				
@@ -102,7 +104,7 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            String qry = "INSERT INTO " + table + "(TicketID, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status)" +  " VALUES ('" + ticket.getId()+ "', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '" + ticket.getStatus()+ "')";
+            String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '" + ticket.getStatus()+ "')";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
@@ -129,6 +131,22 @@ public class Data_Tickets implements Data<Tickets> {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     } 
+        public void deleteRowParam(String table, Tickets ticket, String param)
+    {
+        try{
+            cont.getConnection();
+            myStmt=cont.getConnection().createStatement();
+            String qry = "DELETE FROM " + table + " WHERE TicketID = " + ticket.getId() + param;
+            System.out.println(qry);
+            myStmt.executeUpdate(qry);
+            myStmt.close();
+            JOptionPane.showMessageDialog(null, "Entry deleted");            
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
         public void deleteRow(String table, Tickets ticket)
     {
         try{
@@ -166,6 +184,24 @@ public class Data_Tickets implements Data<Tickets> {
             JOptionPane.showMessageDialog(null, ex.getMessage());
 	}
         return tally;
+    }
+    public ArrayList<String> employeeList (String parameters){
+
+        ArrayList<String> employees = new ArrayList<String>();
+        try{
+            cont.getConnection();
+            myStmt=cont.getConnection().createStatement();	
+            String qry = parameters;
+	    ResultSet rs = myStmt.executeQuery(qry);
+        while (rs.next()){
+        String x = rs.getString("combined");
+            employees.add(x);
+        }
+        } catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return employees;
+        
     }
 }
 
