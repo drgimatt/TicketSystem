@@ -75,13 +75,13 @@ public class Data_Tickets implements Data<Tickets> {
         return ticket;
     }     
 
-    public ArrayList<Tickets> ShowRecInquireSpec(String parameters)
+    public ArrayList<Tickets> ShowRecSpec(String parameters)
     {
         ArrayList<Tickets> ticket=new ArrayList<Tickets>();
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();	
-            String qry = "SELECT * FROM alltickets WHERE " + parameters;
+            String qry = parameters;
 	    ResultSet rs = myStmt.executeQuery(qry);
 	    while(rs.next())
             {
