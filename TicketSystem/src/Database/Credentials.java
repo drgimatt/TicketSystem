@@ -66,6 +66,10 @@ public class Credentials {
         this.position = position;
     }
 
+    public Credentials(String empnum, String uname, byte[] encryptedPass, String email, String fname, String mname, String lname, int age, String bday, String mnum, String gender, String resi, String acttyp, String sdate, String dep, String pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getNum() {
         return num;
     }

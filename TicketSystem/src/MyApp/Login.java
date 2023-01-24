@@ -6,10 +6,14 @@ package MyApp;
 
 import Database.Data_Credentials;
 import Database.MySQLConnector;
+import Database.EncryptionDecryption;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -28,6 +32,7 @@ public class Login extends javax.swing.JFrame {
     }
     NewUser newUser;
     MainMenu mainMenu;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,47 +130,59 @@ public class Login extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        
+
         PreparedStatement ps;
         ResultSet rs;
         Data_Credentials login = new Data_Credentials();
         MySQLConnector connector;
         connector = MySQLConnector.getInstance();
-        String username=usernameFld.getText();
-        String password=passwordFld.getText();
-        
-       if (username.equals("") || password.equals("")){
-           JOptionPane.showMessageDialog(null, "All fields must not be blank!","Error",JOptionPane.ERROR_MESSAGE);
-       } else{
-        String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + password + "'";
-       try{
-        ps = connector.getConnection().prepareStatement(qry);
-        rs = ps.executeQuery();
-        if(rs.next()){
-            String acctype = rs.getString("acctype");
-        if(acctype.equals("Administrator") || acctype.equals("Employee"))
-            {
-                MainMenu user = new MainMenu();
-                //insert pass information here for acctype, firstname, lastname, department
-                user.setAcctype(rs.getString("acctype"));
-                user.setFirstname(rs.getString("firstname"));
-                user.setLastname(rs.getString("lastname"));
-                user.setDepartment(rs.getString("department"));
-                user.show();
+        String username = usernameFld.getText();
+        String password = passwordFld.getText();
+
+        // Check if the username and password fields are not blank
+        if (username.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            EncryptionDecryption encryptionDecryption = new EncryptionDecryption();
+            // Encrypt the password
+            byte[] encryptedPassword = encryptionDecryption.encrypt(password);
+
+            // Check if encryption was successful
+            if (encryptedPassword != null) {
+                // Query the credentials table to check if the entered username and encrypted password match
+                String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + new String(encryptedPassword) + "'";
+
+                try {
+                    Connection conn = connector.getConnection();
+                    if (conn != null) {
+                        ps = conn.prepareStatement(qry);
+                        rs = ps.executeQuery();
+                        if (rs.next()) {
+                            String acctype = rs.getString("acctype");
+                            if (acctype.equals("Administrator") || acctype.equals("Employee")) {
+                                // Decrypt the password
+                                password = encryptionDecryption.decrypt(rs.getBytes("password"));
+
+                                MainMenu user = new MainMenu();
+                                //insert pass information here for acctype, firstname, lastname, department
+                                user.setAcctype(rs.getString("acctype"));
+                                user.setFirstname(rs.getString("firstname"));
+                                user.setLastname(rs.getString("lastname"));
+                                user.setDepartment(rs.getString("department"));
+                                user.show();
+                            }
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "The credentials provided doesn't match!", "Error", JOptionPane.ERROR_MESSAGE);
+                            usernameFld.setText("");
+                            passwordFld.setText("");
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            dispose();
         }
-        else{
-            JOptionPane.showMessageDialog(null, "The credentials provided doesn't match!","Error",JOptionPane.ERROR_MESSAGE);
-            usernameFld.setText("");
-            passwordFld.setText("");
-        }
-        
-        } catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-    }
-        
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
@@ -201,16 +218,16 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        try{
-        UIManager.setLookAndFeel( new FlatIntelliJLaf() );
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-        }catch( Exception ex ) {
-                System.err.println( "Failed to initialize LaF" );
-            }  
+        try {
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Login().setVisible(true);
+                }
+            });
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
