@@ -206,7 +206,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        assignedTicketsBttn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/allticketsButton.png"))); // NOI18N
+        assignedTicketsBttn.setText("Assigned Tickets");
         assignedTicketsBttn.setBorder(null);
         assignedTicketsBttn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -710,28 +710,20 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel14)
-                        .addGap(0, 99, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ticketTypeComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(priorityComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(assigneeComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(depComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel16))
-                                .addGap(0, 27, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ticketTypeComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(priorityComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assigneeComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addGap(0, 27, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1334,6 +1326,7 @@ public class MainMenu extends javax.swing.JFrame {
         String PriorityLevel = priorityComboBox1.getSelectedItem().toString();
         String AssignedDepartment = depComboBox3.getSelectedItem().toString();
         String RevCount = "0";
+        String Creator = getFirstname() + " " + getLastname();
         String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + AssignedDepartment + "'";
         Object[] emplist = ticket.employeeList(param).toArray();
         assigneeComboBox1.setModel(new DefaultComboBoxModel(emplist));
@@ -1341,7 +1334,7 @@ public class MainMenu extends javax.swing.JFrame {
         String DateCreated = tstamp.toString();
         String DateUpdated = tstamp.toString();
         String Status = "Pending";
-        Tickets information = new Tickets(TicketID, RevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status);
+        Tickets information = new Tickets(TicketID, RevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
         ticket.addRow("alltickets", information);
         ticket.addRow("masterrecord", information);
         JOptionPane.showMessageDialog(null, "Ticket has been created. Your ticket number is " + TicketID + ".","Ticket Created",JOptionPane.INFORMATION_MESSAGE);
@@ -1380,6 +1373,7 @@ public class MainMenu extends javax.swing.JFrame {
         String OldRevCount = "";
         String NewRevCount = "";
         String DateCreated = "";
+        String Creator = getFirstname() + " " + getLastname();
         for (Tickets t: ticketinfo){
         OldRevCount = t.getRevcount();
             System.out.println(OldRevCount);
@@ -1395,7 +1389,7 @@ public class MainMenu extends javax.swing.JFrame {
         String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
         String DateUpdated = tstamp.toString();
         String Status = "In progress";
-        Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status);
+        Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
         ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
         ticket.addRow("alltickets", information);
         ticket.addRow("masterrecord", information);       
@@ -1507,6 +1501,7 @@ public class MainMenu extends javax.swing.JFrame {
                 String OldRevCount = "";
                 String NewRevCount = "";
                 String DateCreated = "";
+                String Creator = getFirstname() + " " + getLastname(); 
                 for (Tickets t: ticketinfo){
                 OldRevCount = t.getRevcount();
                 int increment = Integer.parseInt(OldRevCount)+1;        
@@ -1519,7 +1514,7 @@ public class MainMenu extends javax.swing.JFrame {
                 String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
                 String DateUpdated = tstamp.toString();
                 String Status = "Closed";
-                Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status);
+                Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
                 ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
                 ticket.addRow("alltickets", information);
                 ticket.addRow("masterrecord", information); 
