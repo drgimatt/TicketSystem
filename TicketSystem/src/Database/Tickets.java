@@ -20,8 +20,9 @@ public class Tickets {
     private String dateCreated;
     private String dateUpdated;
     private String status;
+    private String creator;
 
-    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
+    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator) {
         this.id = id;
         this.revcount = revcount;
         this.title = title;
@@ -33,9 +34,10 @@ public class Tickets {
         this.dateCreated = dateCreated;
         this.dateUpdated = dateUpdated;
         this.status = status;
+        this.creator = creator;
     }    
     
-    public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
+    public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator) {
         this.id = id;
         this.title = title;
         this.desc = desc;
@@ -46,9 +48,10 @@ public class Tickets {
         this.dateCreated = dateCreated;
         this.dateUpdated = dateUpdated;
         this.status = status;
+        this.creator = creator;
     }
 
-    public Tickets(String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status) {
+    public Tickets(String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator) {
         this.title = title;
         this.desc = desc;
         this.type = type;
@@ -58,6 +61,7 @@ public class Tickets {
         this.dateCreated = dateCreated;
         this.dateUpdated = dateUpdated;
         this.status = status;
+        this.creator = creator;
     }
 
     public Tickets(String id) {
@@ -108,7 +112,10 @@ public class Tickets {
         return revcount;
     }
 
-    
+    public String getCreator() {
+        return creator;
+    }
+
 
     
 }

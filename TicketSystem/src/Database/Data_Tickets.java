@@ -64,7 +64,7 @@ public class Data_Tickets implements Data<Tickets> {
 
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
+                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status"), rs.getString("Creator")));
             }
             rs.close();
 	    myStmt.close();				
@@ -87,7 +87,7 @@ public class Data_Tickets implements Data<Tickets> {
 	    ResultSet rs = myStmt.executeQuery(qry);
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status")));
+                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status"), rs.getString("Creator")));
             }
             rs.close();
 	    myStmt.close();				
@@ -104,7 +104,7 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '" + ticket.getStatus()+ "')";
+            String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '"+ ticket.getStatus() + "', '" + ticket.getCreator()+ "')";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
@@ -120,7 +120,7 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            String qry = "UPDATE " + table + " SET SubjectTitle = " + ticket.getTitle() + ", SubjectDesc = '" + ticket.getDesc() + "', TicketType = '" + ticket.getType() + "', PriorityLevel = '" + ticket.getPriority() + "', AssignedDepartment = '" + ticket.getDepartment() + "', AssignedPersonnel = '" + ticket.getPersonnel() + "', DateCreated = '" + ticket.getDateCreated() + "', DateUpdated = '" + ticket.getDateUpdated() + "', Status = '" + ticket.getStatus() + "' WHERE TicketID = " + "'" + ticket.getId() + "'";
+            String qry = "UPDATE " + table + " SET SubjectTitle = " + ticket.getTitle() + ", SubjectDesc = '" + ticket.getDesc() + "', TicketType = '" + ticket.getType() + "', PriorityLevel = '" + ticket.getPriority() + "', AssignedDepartment = '" + ticket.getDepartment() + "', AssignedPersonnel = '" + ticket.getPersonnel() + "', DateCreated = '" + ticket.getDateCreated() + "', DateUpdated = '" + ticket.getDateUpdated() + "', Status = '" + ticket.getStatus() + "', Creator = '" + ticket.getCreator() +"' WHERE TicketID = " + "'" + ticket.getId() + "'";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
@@ -163,46 +163,46 @@ public class Data_Tickets implements Data<Tickets> {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    public int tallyCount(String parameters)
-    {
-        int tally = 0;
-        try{
-            cont.getConnection();
-            myStmt=cont.getConnection().createStatement();	
-            String qry = "SELECT COUNT(*) from " + parameters;
-	    System.out.println(qry);
-            ResultSet rs = myStmt.executeQuery(qry);
-	    while(rs.next())
-            {
-                tally = rs.getInt(1);
+        public int tallyCount(String parameters)
+        {
+            int tally = 0;
+            try{
+                cont.getConnection();
+                myStmt=cont.getConnection().createStatement();	
+                String qry = "SELECT COUNT(*) from " + parameters;
+                System.out.println(qry);
+                ResultSet rs = myStmt.executeQuery(qry);
+                while(rs.next())
+                {
+                    tally = rs.getInt(1);
+                }
+                rs.close();
+                myStmt.close();				
             }
-            rs.close();
-	    myStmt.close();				
+            catch(SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+            return tally;
         }
-	catch(SQLException ex)
-	{
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        return tally;
-    }
-    public ArrayList<String> employeeList (String parameters){
+        public ArrayList<String> employeeList (String parameters){
 
-        ArrayList<String> employees = new ArrayList<String>();
-        try{
-            cont.getConnection();
-            myStmt=cont.getConnection().createStatement();	
-            String qry = parameters;
-	    ResultSet rs = myStmt.executeQuery(qry);
-        while (rs.next()){
-        String x = rs.getString("combined");
-            employees.add(x);
+            ArrayList<String> employees = new ArrayList<String>();
+            try{
+                cont.getConnection();
+                myStmt=cont.getConnection().createStatement();	
+                String qry = parameters;
+                ResultSet rs = myStmt.executeQuery(qry);
+            while (rs.next()){
+            String x = rs.getString("combined");
+                employees.add(x);
+            }
+            } catch(SQLException ex){
+                System.out.println(ex.getMessage());
+            }
+            return employees;
+
         }
-        } catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-        return employees;
-        
-    }
 }
 
  
