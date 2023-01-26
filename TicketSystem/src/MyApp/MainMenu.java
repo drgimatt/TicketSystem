@@ -1188,7 +1188,7 @@ public class MainMenu extends javax.swing.JFrame {
         MySQLConnector connector;
         connector = MySQLConnector.getInstance();
         connector.getConnection();
-        ticketsArray = mySql.ShowRecSpec("SELECT * FROM alltable WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
+        ticketsArray = mySql.ShowRecSpec("SELECT * FROM alltickets WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
         model = (DefaultTableModel) ticketHistoryTable.getModel();
         model.setRowCount(0);
         for (Tickets t : ticketsArray) {

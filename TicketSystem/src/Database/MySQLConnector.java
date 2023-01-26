@@ -14,7 +14,7 @@ public class MySQLConnector {
     Connection myConn = null;
     Statement myStmt = null;
     ResultSet myRes = null;
-    String addr = "snboots.ddns.net/ticketsys";
+    String addr = "112.205.150.129/ticketsys";
     String address = "jdbc:mysql://" + addr;
     String user = "admin";
     String pass = "titingkayad";
