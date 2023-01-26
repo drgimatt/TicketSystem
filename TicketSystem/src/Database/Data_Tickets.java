@@ -25,9 +25,9 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-//            String qry = "CREATE TABLE " + table + " (NUM INT NOT NULL AUTO_INCREMENT, INQUIREDATE DATE NOT NULL, NAME VARCHAR(45) NOT NULL, EMAIL VARCHAR(45) NOT NULL, UNITTYPE VARCHAR(45) NOT NULL, ACQUIREMETHOD VARCHAR(10) NOT NULL, PRICERANGE VARCHAR(45) NOT NULL, PAYSCHEME VARCHAR(45) NOT NULL, PRIMARY KEY(NUM))";
-//            System.out.println(qry);
-//            myStmt.executeUpdate(qry);
+            String qry = "CREATE TABLE `ticketsys`.`alltickets` (`Number` INT NOT NULL AUTO_INCREMENT,`TicketID` VARCHAR(12) NOT NULL,`RevisionCount` VARCHAR(5) NOT NULL,`SubjectTitle` VARCHAR(45) NULL,`SubjectDesc` VARCHAR(45) NULL,`TicketType` VARCHAR(45) NULL,`PriorityLevel` VARCHAR(45) NULL,`AssignedDepartment` VARCHAR(45) NULL,`AssignedPersonnel` VARCHAR(45) NULL,`DateCreated` VARCHAR(45) NULL,`DateUpdated` VARCHAR(45) NULL,`Status` VARCHAR(45) NULL,`Creator` VARCHAR(45) NULL,PRIMARY KEY (`Number`),UNIQUE INDEX `new_tablecol_UNIQUE` (`TicketID` ASC) VISIBLE);";
+            System.out.println(qry);
+            myStmt.executeUpdate(qry);
 	    myStmt.close();
             JOptionPane.showMessageDialog(null, "Table created");            
         }

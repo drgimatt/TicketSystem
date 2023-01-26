@@ -47,9 +47,10 @@ public class Data_Credentials implements Data<Credentials>{
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            //String qry = "CREATE TABLE " + table + "()";
-            //myStmt.executeUpdate(qry);
-	    //myStmt.close();
+            String qry = "CREATE TABLE `ticketsys`.`credentials` (`num` INT NOT NULL AUTO_INCREMENT,`empnum` VARCHAR(45) NULL,`username` VARCHAR(45) NULL,`password` VARCHAR(45) NULL,`email_add` VARCHAR(45) NULL,`firstname` VARCHAR(45) NULL,`middlename` VARCHAR(45) NULL,`lastname` VARCHAR(45) NULL,`age` INT NULL,`birthday` DATE NULL,`phonenum` VARCHAR(20) NULL,`gender` VARCHAR(30) NULL,`residence` VARCHAR(150) NULL,`acctype` VARCHAR(20) NULL,`startdate` DATE NULL,`department` VARCHAR(45) NULL,`position` VARCHAR(45) NULL,PRIMARY KEY (`num`),UNIQUE INDEX `num_UNIQUE` (`num` ASC) VISIBLE);";
+
+            myStmt.executeUpdate(qry);
+	    myStmt.close();
             JOptionPane.showMessageDialog(null, "Table created");            
         }
         catch (SQLException ex)

@@ -17,7 +17,7 @@ public class MySQLConnector {
     String addr = "snboots.ddns.net/ticketsys";
     String address = "jdbc:mysql://" + addr;
     String user = "admin";
-    String pass = "admin";
+    String pass = "titingkayad";
     
     private static MySQLConnector dbObject;
 
