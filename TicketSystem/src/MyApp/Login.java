@@ -182,7 +182,39 @@ public class Login extends javax.swing.JFrame {
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }                
+// modify so that it uses the MySQLConnector and Data_Credentials instead.
+//                try {
+//                    Connection conn = connector.getConnection();
+//                    if (conn != null) {
+//                        ps = conn.prepareStatement(qry);
+//                        rs = ps.executeQuery();
+//                        if (rs.next()) {
+//                            String acctype = rs.getString("acctype");
+//                            if (acctype.equals("Administrator") || acctype.equals("Employee")) {
+//                                // Decrypt the password
+//                                password = encryptionDecryption.decrypt(rs.getBytes("password"));
+//
+//                                MainMenu user = new MainMenu();
+//                                //insert pass information here for acctype, firstname, lastname, department
+//                                user.setAcctype(rs.getString("acctype"));
+//                                user.setFirstname(rs.getString("firstname"));
+//                                user.setLastname(rs.getString("lastname"));
+//                                user.setDepartment(rs.getString("department"));
+//                                user.show();
+//                            }
+//                            dispose();
+//                        } else {
+//                            JOptionPane.showMessageDialog(null, "The credentials provided doesn't match!", "Error", JOptionPane.ERROR_MESSAGE);
+//                            usernameFld.setText("");
+//                            passwordFld.setText("");
+//                        }
+//                        ps.close();
+//                        rs.close();
+//                    }
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//                }
             }
         }
     }//GEN-LAST:event_loginBtnActionPerformed
