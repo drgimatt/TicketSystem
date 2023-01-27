@@ -7,8 +7,11 @@ package MyApp;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import Database.Credentials;
 import Database.Data_Credentials;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -415,14 +418,41 @@ public class NewUser extends javax.swing.JFrame {
         String pass = passFld.getText(); // implement password encryption - passwords are not hashed on the database
         String conpass = passConFld.getText();
         String acttyp = acctypeSel.getSelectedItem().toString();
-        String bday = dFormat.format(birthday.getDate());
+        
+        String bday = "";
+        String sdate = "";
+        int age = 0;
+        
+        try {
+            bday = dFormat.format(birthday.getDate());
+        } catch (Exception ex) {
+            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Birthdate was not provided.","Missing Birthdate",JOptionPane.ERROR_MESSAGE);
+            System.out.println("Blank field - Birthdate");
+        }
+        
+        try {
+            sdate = dFormat.format(dateStart.getDate());
+        } catch (Exception ex) {
+            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Startdate was not provided.","Missing Startdate",JOptionPane.ERROR_MESSAGE);
+            System.out.println("Blank field - Birthdate");            
+        }   
+        
+        try {
+            age = currYear - Integer.parseInt(birthYear.format(birthday.getDate()));
+        } catch (Exception ex) {
+            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Age cannot be computed");            
+        }        
+                
         String empnum = empIDFld.getText();
-        int age = currYear - Integer.parseInt(birthYear.format(birthday.getDate()));
+        
         String gender = genderFld.getText();
         String resi = resFld.getText();
         String dep = deptFld.getSelectedItem().toString();
         String pos = posFld.getText();
-        String sdate = dFormat.format(dateStart.getDate());
+        
         boolean passAreEqual = pass.equals(conpass);
         if (passAreEqual && emailAddCorFormat){ //add appropriate checks for user-provided data
             String table = "credentials";
