@@ -48,14 +48,16 @@ public class MySQLConnector {
         try{
             myStmt=getConnection().createStatement();
             myStmt.executeUpdate(qry);
-            myStmt.close();
-            myConn.close();
-            myRes.close();
         }
         catch (SQLException se)
         {
             System.out.println(se.getMessage());
         }
+         finally {
+            try { myConn.close(); } catch (Exception e) { /* Ignored */ }
+            try { myStmt.close(); } catch (Exception e) { /* Ignored */ }
+            try { myRes.close(); } catch (Exception e) { /* Ignored */ }
+        }       
     }       
 
     public void setAddr(String addr) {
