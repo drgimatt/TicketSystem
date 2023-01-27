@@ -197,9 +197,11 @@ public class Data_Tickets implements Data<Tickets> {
             String x = rs.getString("combined");
                 employees.add(x);
             }
+                myStmt.close();
             } catch(SQLException ex){
                 System.out.println(ex.getMessage());
             }
+            
             return employees;
 
         }

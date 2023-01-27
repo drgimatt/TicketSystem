@@ -49,6 +49,8 @@ public class MySQLConnector {
             myStmt=getConnection().createStatement();
             myStmt.executeUpdate(qry);
             myStmt.close();
+            myConn.close();
+            myRes.close();
         }
         catch (SQLException se)
         {

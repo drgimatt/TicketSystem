@@ -1185,9 +1185,6 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(myTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
-        MySQLConnector connector;
-        connector = MySQLConnector.getInstance();
-        connector.getConnection();
         ticketsArray = mySql.ShowRecSpec("SELECT * FROM alltickets WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
         model = (DefaultTableModel) ticketHistoryTable.getModel();
         model.setRowCount(0);
@@ -1203,9 +1200,6 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.repaint();
         parentPanel.revalidate();
 
-        MySQLConnector connector;
-        connector = MySQLConnector.getInstance();
-        connector.getConnection();
         ticketsArray = mySql.ShowRec("alltickets");
         model = (DefaultTableModel) allTicketTable.getModel();
         model.setRowCount(0);
@@ -1449,9 +1443,6 @@ public class MainMenu extends javax.swing.JFrame {
             assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
             assigneeComboBox.setSelectedItem(t.getPersonnel());
             } 
-            MySQLConnector connector;
-            connector = MySQLConnector.getInstance();
-            connector.getConnection();
             ticketsArray = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount");
             model = (DefaultTableModel) ticketHistoryTable.getModel();
             model.setRowCount(0);
@@ -1467,10 +1458,6 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(assignedTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
-
-        MySQLConnector connector;
-        connector = MySQLConnector.getInstance();
-        connector.getConnection();
         ticketsArray = mySql.ShowRecSpec("SELECT * FROM alltickets WHERE AssignedPersonnel = '" + getFirstname() + " " + getLastname() + "'");
         model = (DefaultTableModel) assignedTicketTable.getModel();
         model.setRowCount(0);
@@ -1699,11 +1686,11 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     public String getFirstname() {
-        return firstname;
+        return "Miguel";
     }
 
     public String getLastname() {
-        return lastname;
+        return "Escandor";
     }
 
     public String getDepartment() {
@@ -1720,15 +1707,11 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }
     private void updateTableDisplay(){
-    MySQLConnector connector;
-    connector = MySQLConnector.getInstance();
-    connector.getConnection();
     user = creds.ShowRec("credentials");    
     model = (DefaultTableModel) userManagerTable.getModel();
     model.setRowCount(0);
     for(Credentials u: user)    
     model.addRow(new Object[] {u.getNum(),u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
-    connector.getConnection();
     ticketsArray = mySql.ShowRec("alltickets");
     model = (DefaultTableModel) allTicketTable.getModel();
     model.setRowCount(0);

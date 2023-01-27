@@ -177,6 +177,8 @@ public class Login extends javax.swing.JFrame {
                             usernameFld.setText("");
                             passwordFld.setText("");
                         }
+                        ps.close();
+                        rs.close();
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
