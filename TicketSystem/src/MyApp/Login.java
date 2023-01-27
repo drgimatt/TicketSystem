@@ -6,7 +6,7 @@ package MyApp;
 
 import Database.Credentials;
 import Database.Data_Credentials;
-import Database.MySQLConnector;
+import Database.MySQLConnectorOrig;
 import Database.EncryptionDecryption;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.sql.Connection;
@@ -136,8 +136,8 @@ public class Login extends javax.swing.JFrame {
         PreparedStatement ps;
         ResultSet rs;
         Data_Credentials login = new Data_Credentials();
-        MySQLConnector connector;
-        connector = MySQLConnector.getInstance();
+        MySQLConnectorOrig connector;
+        connector = MySQLConnectorOrig.getInstance();
         String username = usernameFld.getText();
         String password = passwordFld.getText();
 

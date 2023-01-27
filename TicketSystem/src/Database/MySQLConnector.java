@@ -3,87 +3,52 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Database;
-
+import java.beans.PropertyVetoException;
+import java.io.IOException;
 import java.sql.*;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
  *
  * @author boxro
  */
 public class MySQLConnector {
-    Connection myConn = null;
-    Statement myStmt = null;
-    ResultSet myRes = null;
     String addr = "112.205.150.129:3310/ticketsys";
-    String address = "jdbc:mysql://" + addr + "?enabledTLSProtocols=TLSv1.2&autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
+    String address = "jdbc:mysql://" + addr ;//+ "?enabledTLSProtocols=TLSv1.2&autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
     String user = "admin";
     String pass = "titingkayad";
     
-    private static MySQLConnector dbObject;
+    private static MySQLConnector datasource;
+    private BasicDataSource ds;
+    
+    public MySQLConnector()throws IOException, SQLException, PropertyVetoException{
+ 
 
-    private MySQLConnector(){
-    }
 
-    public static MySQLConnector getInstance(){
-        if (dbObject == null){
-            dbObject = new MySQLConnector();
-        }
-        return dbObject;
-    }
-
-    public Connection getConnection()
-    {
-        try{
-            myConn = DriverManager.getConnection(address, user, pass);
-        }
-        catch (SQLException se)
-        {
-            System.out.println(se.getMessage());
-        }
-        return myConn;
-    }
-         
-    public void interactData (String qry)
-    {
-        try{
-            myStmt=getConnection().createStatement();
-            myStmt.executeUpdate(qry);
-        }
-        catch (SQLException se)
-        {
-            System.out.println(se.getMessage());
-        }
-         finally {
-            try { myConn.close(); } catch (Exception e) { /* Ignored */ }
-            try { myStmt.close(); } catch (Exception e) { /* Ignored */ }
-            try { myRes.close(); } catch (Exception e) { /* Ignored */ }
-        }       
-    }       
-
-    public void setAddr(String addr) {
-        this.addr = addr;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public String getAddr() {
-        return addr;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-   
+            ds = new BasicDataSource();
+            ds.setUrl(address);
+            ds.setUsername(user);
+            ds.setPassword(pass);
+ 
+ 
+            ds.setMinIdle(5);
+            ds.setMaxIdle(10);
+            ds.setMaxOpenPreparedStatements(50);
+  
 }
+    
+    public static MySQLConnector getInstance() throws IOException, SQLException, PropertyVetoException {
+        if (datasource == null) {
+            datasource = new MySQLConnector();
+            return datasource;
+        } else {
+            return datasource;
+        }
+    }
 
+    public Connection getConnection() throws SQLException {
+        return this.ds.getConnection();
+    }    
+    
+    
+}
