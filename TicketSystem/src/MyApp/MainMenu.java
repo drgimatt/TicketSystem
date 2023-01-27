@@ -45,6 +45,7 @@ public class MainMenu extends javax.swing.JFrame {
     Login login;
     NewUser newUser;
     UpdateUser updateUser;
+    MySQLConnector connector;
     private String acctype, firstname, lastname, department;
     private Data_Tickets mySql = new Data_Tickets();
     private ArrayList<Tickets> ticketsArray;
@@ -1755,7 +1756,7 @@ public class MainMenu extends javax.swing.JFrame {
         }
         jLabel3.setText("Are you ready to work on your tickets, " + getFirstname() + " " + getLastname() + "?");
     }
-    private void updateTableDisplay(){
+    private void updateTableDisplay(){   
     user = creds.ShowRec("credentials");    
     model = (DefaultTableModel) userManagerTable.getModel();
     model.setRowCount(0);

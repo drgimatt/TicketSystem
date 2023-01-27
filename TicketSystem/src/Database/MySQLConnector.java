@@ -15,7 +15,7 @@ public class MySQLConnector {
     Statement myStmt = null;
     ResultSet myRes = null;
     String addr = "112.205.150.129:3310/ticketsys";
-    String address = "jdbc:mysql://" + addr;
+    String address = "jdbc:mysql://" + addr + "?enabledTLSProtocols=TLSv1.2&autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
     String user = "admin";
     String pass = "titingkayad";
     
