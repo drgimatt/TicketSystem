@@ -21,8 +21,9 @@ public class Tickets {
     private String dateUpdated;
     private String status;
     private String creator;
+    private String notes;
 
-    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator) {
+    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
         this.id = id;
         this.revcount = revcount;
         this.title = title;
@@ -35,9 +36,10 @@ public class Tickets {
         this.dateUpdated = dateUpdated;
         this.status = status;
         this.creator = creator;
+        this.notes = notes;
     }    
     
-    public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator) {
+    public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
         this.id = id;
         this.title = title;
         this.desc = desc;
@@ -49,9 +51,10 @@ public class Tickets {
         this.dateUpdated = dateUpdated;
         this.status = status;
         this.creator = creator;
+        this.notes = notes;
     }
 
-    public Tickets(String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator) {
+    public Tickets(String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
         this.title = title;
         this.desc = desc;
         this.type = type;
@@ -62,6 +65,7 @@ public class Tickets {
         this.dateUpdated = dateUpdated;
         this.status = status;
         this.creator = creator;
+        this.notes = notes;
     }
 
     public Tickets(String id) {
@@ -116,7 +120,9 @@ public class Tickets {
         return creator;
     }
 
-
+    public String getNotes(){
+        return notes;
+    }
     
 }
 

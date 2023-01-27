@@ -87,7 +87,7 @@ public class Data_Tickets implements Data<Tickets> {
 	    ResultSet rs = myStmt.executeQuery(qry);
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status"), rs.getString("Creator")));
+                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status"), rs.getString("Creator"), rs.getString ("Notes")));
             }
             rs.close();
 	    myStmt.close();				
@@ -120,7 +120,7 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             cont.getConnection();
             myStmt=cont.getConnection().createStatement();
-            String qry = "UPDATE " + table + " SET SubjectTitle = " + ticket.getTitle() + ", SubjectDesc = '" + ticket.getDesc() + "', TicketType = '" + ticket.getType() + "', PriorityLevel = '" + ticket.getPriority() + "', AssignedDepartment = '" + ticket.getDepartment() + "', AssignedPersonnel = '" + ticket.getPersonnel() + "', DateCreated = '" + ticket.getDateCreated() + "', DateUpdated = '" + ticket.getDateUpdated() + "', Status = '" + ticket.getStatus() + "', Creator = '" + ticket.getCreator() +"' WHERE TicketID = " + "'" + ticket.getId() + "'";
+            String qry = "UPDATE " + table + " SET SubjectTitle = " + ticket.getTitle() + ", SubjectDesc = '" + ticket.getDesc() + "', TicketType = '" + ticket.getType() + "', PriorityLevel = '" + ticket.getPriority() + "', AssignedDepartment = '" + ticket.getDepartment() + "', AssignedPersonnel = '" + ticket.getPersonnel() + "', DateCreated = '" + ticket.getDateCreated() + "', DateUpdated = '" + ticket.getDateUpdated() + "', Status = '" + ticket.getStatus() + "', Creator = '" + ticket.getCreator() + "', Notes = '" + ticket.getNotes() + "' WHERE TicketID = " + "'" + ticket.getId() + "'";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();

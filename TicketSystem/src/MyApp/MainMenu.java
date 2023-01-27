@@ -98,7 +98,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         solvedTicketsPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        solvedTicketsTable = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         createTicketPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -128,6 +128,7 @@ public class MainMenu extends javax.swing.JFrame {
         assigneeComboBox = new javax.swing.JComboBox<>();
         ticketNumberLbl4 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         ticketNameTxtField = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -141,6 +142,9 @@ public class MainMenu extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         ticketHistoryTable = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        ticketNotesTextArea = new javax.swing.JTextArea();
+        jLabel24 = new javax.swing.JLabel();
         assignedTicketsPanel = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         assignedTicketTable = new javax.swing.JTable();
@@ -591,43 +595,43 @@ public class MainMenu extends javax.swing.JFrame {
 
         solvedTicketsPanel.setPreferredSize(new java.awt.Dimension(610, 349));
 
-        jTable3.setAutoCreateRowSorter(true);
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        solvedTicketsTable.setAutoCreateRowSorter(true);
+        solvedTicketsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Solved", "Assignee"
+                "Ticket Number", "Ticket Title", "Ticket Type", "Priority", "Department", "Date Solved", "Assignee"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(solvedTicketsTable);
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 204));
@@ -905,6 +909,16 @@ public class MainMenu extends javax.swing.JFrame {
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
+        jComboBox1.setBackground(new java.awt.Color(0, 102, 204));
+        jComboBox1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open", "Pending Action" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -912,50 +926,55 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(assigneeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ticketTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(priorityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(depComboBox, 0, 179, Short.MAX_VALUE))
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(ticketNumberLbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(ticketNumberLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(ticketNumberLbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23))))))
+                                .addGap(32, 32, 32))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(assigneeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ticketTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(priorityComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(depComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 179, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(ticketNumberLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ticketNumberLbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ticketNumberLbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addComponent(ticketTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addComponent(priorityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
                 .addComponent(depComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(54, 54, 54)
                 .addComponent(assigneeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
 
-        ticketNameTxtField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ticketNameTxtField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
+        ticketTxtArea.setEditable(false);
         ticketTxtArea.setColumns(20);
+        ticketTxtArea.setLineWrap(true);
         ticketTxtArea.setRows(5);
         jScrollPane4.setViewportView(ticketTxtArea);
 
@@ -1023,25 +1042,16 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel22.setText("Ticket History");
 
+        ticketNotesTextArea.setColumns(20);
+        ticketNotesTextArea.setRows(5);
+        jScrollPane9.setViewportView(ticketNotesTextArea);
+
+        jLabel24.setText("Ticket Notes");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
-                            .addComponent(ticketNameTxtField))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(216, 216, 216)
                 .addComponent(updateTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1050,6 +1060,29 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cancelModifyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 257, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                            .addComponent(ticketNameTxtField)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane9)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(327, Short.MAX_VALUE)
@@ -1059,18 +1092,22 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ticketNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jLabel21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(updateTicketButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1107,33 +1144,33 @@ public class MainMenu extends javax.swing.JFrame {
         assignedTicketTable.setAutoCreateRowSorter(true);
         assignedTicketTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Updated"
+                "Ticket Number", "Ticket Title", "Ticket Type", "Priority", "Department", "Date Created", "Date Updated"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1185,12 +1222,7 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(myTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
-        ticketsArray = mySql.ShowRecSpec("SELECT * FROM alltickets WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
-        model = (DefaultTableModel) ticketHistoryTable.getModel();
-        model.setRowCount(0);
-        for (Tickets t : ticketsArray) {
-            model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated(), t.getDateUpdated()});
-        }
+        updateTableDisplay();
     }//GEN-LAST:event_myTicketsBttnActionPerformed
 
     private void allTicketsBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allTicketsBttnActionPerformed
@@ -1199,13 +1231,7 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(allTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
-
-        ticketsArray = mySql.ShowRec("alltickets");
-        model = (DefaultTableModel) allTicketTable.getModel();
-        model.setRowCount(0);
-        for (Tickets t : ticketsArray) {
-            model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
-        }
+        updateTableDisplay();
     }//GEN-LAST:event_allTicketsBttnActionPerformed
 
     private void solvedTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solvedTicketsActionPerformed
@@ -1214,6 +1240,8 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(solvedTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
+        updateTableDisplay();        
+        
     }//GEN-LAST:event_solvedTicketsActionPerformed
 
     private void createTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTicketActionPerformed
@@ -1368,6 +1396,7 @@ public class MainMenu extends javax.swing.JFrame {
         String NewRevCount = "";
         String DateCreated = "";
         String Creator = getFirstname() + " " + getLastname();
+        String Notes = ticketNotesTextArea.getText();
         for (Tickets t: ticketinfo){
         OldRevCount = t.getRevcount();
             System.out.println(OldRevCount);
@@ -1382,11 +1411,18 @@ public class MainMenu extends javax.swing.JFrame {
         assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
         String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
         String DateUpdated = tstamp.toString();
-        String Status = "In progress";
-        Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+        String Status = "Pending";
+        Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes);
         ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
         ticket.addRow("alltickets", information);
-        ticket.addRow("masterrecord", information);       
+        ticket.addRow("masterrecord", information);
+        ticketsArray = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount");
+        model = (DefaultTableModel) ticketHistoryTable.getModel();
+        model.setRowCount(0);
+        for (Tickets t : ticketsArray) {
+        model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+        }
+        updateTableDisplay();
     }//GEN-LAST:event_updateTicketButtonActionPerformed
 
     private void depComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depComboBoxActionPerformed
@@ -1449,6 +1485,7 @@ public class MainMenu extends javax.swing.JFrame {
             for (Tickets t : ticketsArray) {
             model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
             }
+            updateTableDisplay();
         }
     }//GEN-LAST:event_assignedTicketTableMouseClicked
 
@@ -1458,12 +1495,7 @@ public class MainMenu extends javax.swing.JFrame {
         parentPanel.add(assignedTicketsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
-        ticketsArray = mySql.ShowRecSpec("SELECT * FROM alltickets WHERE AssignedPersonnel = '" + getFirstname() + " " + getLastname() + "'");
-        model = (DefaultTableModel) assignedTicketTable.getModel();
-        model.setRowCount(0);
-        for (Tickets t : ticketsArray) {
-            model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated()});
-        }
+        updateTableDisplay();
     }//GEN-LAST:event_assignedTicketsBttnActionPerformed
 
     private void closeTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeTicketButtonActionPerformed
@@ -1486,13 +1518,12 @@ public class MainMenu extends javax.swing.JFrame {
                 String PriorityLevel = priorityComboBox.getSelectedItem().toString();
                 String AssignedDepartment = depComboBox.getSelectedItem().toString();
                 String OldRevCount = "";
-                String NewRevCount = "";
+                String NewRevCount = "Final";
                 String DateCreated = "";
                 String Creator = getFirstname() + " " + getLastname(); 
+                String Notes = ticketNotesTextArea.getText();
                 for (Tickets t: ticketinfo){
                 OldRevCount = t.getRevcount();
-                int increment = Integer.parseInt(OldRevCount)+1;        
-                NewRevCount = Integer.toString(increment);
                 DateCreated = t.getDateCreated();
                 }
                 String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + AssignedDepartment + "'";
@@ -1501,10 +1532,17 @@ public class MainMenu extends javax.swing.JFrame {
                 String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
                 String DateUpdated = tstamp.toString();
                 String Status = "Closed";
-                Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+                Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes);
                 ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
                 ticket.addRow("alltickets", information);
-                ticket.addRow("masterrecord", information); 
+                ticket.addRow("masterrecord", information);
+                ticketsArray = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount");
+                model = (DefaultTableModel) ticketHistoryTable.getModel();
+                model.setRowCount(0);
+                for (Tickets t : ticketsArray) {
+                model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+                }
+                updateTableDisplay();
             }
     }//GEN-LAST:event_closeTicketButtonActionPerformed
 
@@ -1519,7 +1557,7 @@ public class MainMenu extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             ArrayList<Tickets> ticketinfo;
             Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT * FROM masterrecord WHERE TicketID = '" + id + "'";
+            String parameters = "SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY Number ASC";
             ticketinfo = ticket.ShowRecSpec(parameters);
             ticketTypeComboBox.setSelectedItem(DFT.getValueAt(selectedRow,1).toString());
             priorityComboBox.setSelectedItem(DFT.getValueAt(selectedRow,5).toString());
@@ -1536,6 +1574,10 @@ public class MainMenu extends javax.swing.JFrame {
             }   
         } 
     }//GEN-LAST:event_ticketHistoryTableMouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1599,6 +1641,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> depComboBox;
     private javax.swing.JComboBox<String> depComboBox3;
     private javax.swing.JPanel indivTicketPanel;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1615,6 +1658,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1634,10 +1678,10 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable jTable3;
     private javax.swing.JButton logoutBttn;
     private javax.swing.JButton manageUserButton;
     private javax.swing.JTable myTicketTable;
@@ -1651,8 +1695,10 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton refreshTableButton;
     private javax.swing.JButton solvedTickets;
     private javax.swing.JPanel solvedTicketsPanel;
+    private javax.swing.JTable solvedTicketsTable;
     private javax.swing.JTable ticketHistoryTable;
     private javax.swing.JTextField ticketNameTxtField;
+    private javax.swing.JTextArea ticketNotesTextArea;
     private javax.swing.JLabel ticketNumberLbl1;
     private javax.swing.JLabel ticketNumberLbl4;
     private javax.swing.JTextArea ticketTxtArea;
@@ -1701,10 +1747,13 @@ public class MainMenu extends javax.swing.JFrame {
         System.out.println("User Type: " + x);
         if ("Employee".equals(x)) {
             manageUserButton.setVisible(false);
+            assigneeComboBox1.setVisible(false);
+            assigneeComboBox.setVisible(false);
         }
         if ("Administrator".equals(x)) {
             manageUserButton.setVisible(true);
         }
+        jLabel3.setText("Are you ready to work on your tickets, " + getFirstname() + " " + getLastname() + "?");
     }
     private void updateTableDisplay(){
     user = creds.ShowRec("credentials");    
@@ -1718,5 +1767,23 @@ public class MainMenu extends javax.swing.JFrame {
     for (Tickets t : ticketsArray) {
     model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
     }
+    ticketsArray = mySql.ShowRec("masterrecord WHERE Status = 'CLOSED'");
+    model = (DefaultTableModel) solvedTicketsTable.getModel();
+    model.setRowCount(0);
+    for (Tickets t : ticketsArray) {
+    model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
+    }
+    ticketsArray = mySql.ShowRec("masterrecord WHERE AssignedPersonnel = '" + getFirstname() + " " + getLastname() + "'");
+    model = (DefaultTableModel) assignedTicketTable.getModel();
+    model.setRowCount(0);
+    for (Tickets t : ticketsArray) {
+    model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
+    } 
+    ticketsArray = mySql.ShowRec("masterrecord WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
+    model = (DefaultTableModel) myTicketTable.getModel();
+    model.setRowCount(0);
+    for (Tickets t : ticketsArray) {
+    model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
+    } 
     }
 }
