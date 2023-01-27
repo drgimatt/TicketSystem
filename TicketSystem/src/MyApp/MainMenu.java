@@ -1759,8 +1759,9 @@ public class MainMenu extends javax.swing.JFrame {
     user = creds.ShowRec("credentials");    
     model = (DefaultTableModel) userManagerTable.getModel();
     model.setRowCount(0);
-    for(Credentials u: user)    
+    for(Credentials u: user) {    
     model.addRow(new Object[] {u.getNum(),u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
+    }
     ticketsArray = mySql.ShowRec("alltickets");
     model = (DefaultTableModel) allTicketTable.getModel();
     model.setRowCount(0);

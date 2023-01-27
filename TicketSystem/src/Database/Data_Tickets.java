@@ -64,7 +64,7 @@ public class Data_Tickets implements Data<Tickets> {
 
 	    while(rs.next())
             {
-                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status"), rs.getString("Creator")));
+                ticket.add(new Tickets(rs.getString("TicketID"),rs.getString("RevisionCount"), rs.getString("SubjectTitle"), rs.getString("SubjectDesc"), rs.getString("TicketType"), rs.getString("PriorityLevel"), rs.getString("AssignedDepartment"), rs.getString("AssignedPersonnel"), rs.getString("DateCreated"), rs.getString("DateUpdated"), rs.getString("Status"), rs.getString("Creator"), rs.getString ("Notes")));
             }
             rs.close();
 	    myStmt.close();				
