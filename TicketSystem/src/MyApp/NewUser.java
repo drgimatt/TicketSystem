@@ -179,7 +179,7 @@ public class NewUser extends javax.swing.JFrame {
         deptFld.setBackground(new java.awt.Color(0, 102, 204));
         deptFld.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         deptFld.setForeground(new java.awt.Color(255, 255, 255));
-        deptFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations ", "Legal ", "Engineering ", "Logistics ", "Marketing", "Administration" }));
+        deptFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing", "Administration" }));
         deptFld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         resFld.setColumns(20);
