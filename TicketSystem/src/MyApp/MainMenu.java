@@ -1769,7 +1769,7 @@ public class MainMenu extends javax.swing.JFrame {
     model = (DefaultTableModel) allTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : alltickets) {
-    model.addRow(new Object[]{t.getId(), t.getCreator(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
+    model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
     }
     solvedtickets = mySql.ShowRec("masterrecord WHERE Status = 'CLOSED'");
     model = (DefaultTableModel) solvedTicketsTable.getModel();
