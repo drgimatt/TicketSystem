@@ -81,6 +81,7 @@ public class Data_Tickets implements Data<Tickets> {
             myStmt=myConn.createStatement();	
             String qry = "SELECT * FROM alltickets";
 	    myRes = myStmt.executeQuery(qry);
+            System.out.println(qry);
 	    while(myRes.next())
             {
                 ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes")));
@@ -107,7 +108,8 @@ public class Data_Tickets implements Data<Tickets> {
         ArrayList<Tickets> ticket=new ArrayList<Tickets>();
         try{
             myConn = MySQLConnector.getInstance().getConnection();
-            myStmt=myConn.createStatement();	
+            myStmt=myConn.createStatement();
+            System.out.println(parameters);
 	    myRes = myStmt.executeQuery(parameters);
 	    while(myRes.next())
             {

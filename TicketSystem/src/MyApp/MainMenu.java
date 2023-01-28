@@ -146,6 +146,11 @@ public class MainMenu extends javax.swing.JFrame {
         ticketNumberLbl4 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         ticketNameTxtField = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -439,21 +444,20 @@ public class MainMenu extends javax.swing.JFrame {
             .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(365, 365, 365))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refreshTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(refreshTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+            .addGroup(userManagementPanelLayout.createSequentialGroup()
+                .addGap(389, 389, 389)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         userManagementPanelLayout.setVerticalGroup(
             userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -838,7 +842,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(newTicketName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -934,6 +938,21 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel25.setText("Status");
+
+        jLabel26.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel26.setText("Type");
+
+        jLabel27.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel27.setText("Priority");
+
+        jLabel28.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel28.setText("Department");
+
+        jLabel29.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel29.setText("Assigned Personnel");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -961,7 +980,15 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(ticketTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(priorityComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(depComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 179, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -972,15 +999,25 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ticketNumberLbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ticketTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(priorityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(depComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(assigneeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
@@ -1001,7 +1038,7 @@ public class MainMenu extends javax.swing.JFrame {
         updateTicketButton.setBackground(new java.awt.Color(204, 153, 0));
         updateTicketButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         updateTicketButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateTicketButton.setText("Update Ticket");
+        updateTicketButton.setText("UPDATE TICKET");
         updateTicketButton.setBorder(new javax.swing.border.MatteBorder(null));
         updateTicketButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1012,7 +1049,7 @@ public class MainMenu extends javax.swing.JFrame {
         closeTicketButton.setBackground(new java.awt.Color(0, 153, 51));
         closeTicketButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         closeTicketButton.setForeground(new java.awt.Color(255, 255, 255));
-        closeTicketButton.setText("Close Ticket");
+        closeTicketButton.setText("CLOSE TICKET");
         closeTicketButton.setBorder(new javax.swing.border.MatteBorder(null));
         closeTicketButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1023,7 +1060,7 @@ public class MainMenu extends javax.swing.JFrame {
         cancelModifyButton.setBackground(new java.awt.Color(153, 0, 0));
         cancelModifyButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cancelModifyButton.setForeground(new java.awt.Color(255, 255, 255));
-        cancelModifyButton.setText("Cancel");
+        cancelModifyButton.setText("CANCEL");
         cancelModifyButton.setBorder(new javax.swing.border.MatteBorder(null));
         cancelModifyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1067,13 +1104,13 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(updateTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(198, 198, 198)
+                .addComponent(updateTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(closeTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(closeTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cancelModifyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 257, Short.MAX_VALUE))
+                .addComponent(cancelModifyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1124,9 +1161,10 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(updateTicketButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cancelModifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(closeTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(closeTicketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelModifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -1189,6 +1227,11 @@ public class MainMenu extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        assignedTicketTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                assignedTicketTableMouseClicked(evt);
             }
         });
         jScrollPane8.setViewportView(assignedTicketTable);
@@ -1357,9 +1400,12 @@ public class MainMenu extends javax.swing.JFrame {
         Object[] emplist = ticket.employeeList(param).toArray();
         assigneeComboBox1.setModel(new DefaultComboBoxModel(emplist));
         String AssignedPersonnel = assigneeComboBox1.getSelectedItem().toString();
+        if(getAcctype().equals("Employee")){
+        AssignedPersonnel = "N/A";
+        }
         String DateCreated = tstamp.toString();
         String DateUpdated = tstamp.toString();
-        String Status = "Pending";
+        String Status = "Open";
         Tickets information = new Tickets(TicketID, RevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
         ticket.addRow("alltickets", information);
         ticket.addRow("masterrecord", information);
@@ -1372,6 +1418,11 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void cancelModifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelModifyButtonActionPerformed
         // TODO add your handling code here:
+        parentPanel.removeAll();
+        parentPanel.add(assignedTicketsPanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
+        updateTableDisplay();        
     }//GEN-LAST:event_cancelModifyButtonActionPerformed
 
     private void assigneeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assigneeComboBoxActionPerformed
@@ -1415,7 +1466,7 @@ public class MainMenu extends javax.swing.JFrame {
         assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
         String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
         String DateUpdated = tstamp.toString();
-        String Status = "Pending";
+        String Status = "Open";
         Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes);
         ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
         ticket.addRow("alltickets", information);
@@ -1427,6 +1478,7 @@ public class MainMenu extends javax.swing.JFrame {
         model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
         }
         updateTableDisplay();
+        JOptionPane.showMessageDialog(null, "Ticket has been updated","Ticket Updated",JOptionPane.INFORMATION_MESSAGE);              
     }//GEN-LAST:event_updateTicketButtonActionPerformed
 
     private void depComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depComboBoxActionPerformed
@@ -1505,6 +1557,12 @@ public class MainMenu extends javax.swing.JFrame {
                 model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
                 }
                 updateTableDisplay();
+                JOptionPane.showMessageDialog(null, "Ticket has been closed","Ticket Closed",JOptionPane.INFORMATION_MESSAGE);
+                parentPanel.removeAll();
+                parentPanel.add(assignedTicketsPanel);
+                parentPanel.repaint();
+                parentPanel.revalidate();
+                updateTableDisplay();                
             }
     }//GEN-LAST:event_closeTicketButtonActionPerformed
 
@@ -1540,6 +1598,48 @@ public class MainMenu extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void assignedTicketTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTicketTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel DFT = (DefaultTableModel) assignedTicketTable.getModel();
+        int selectedRow =  assignedTicketTable.getSelectedRow();
+        int row = assignedTicketTable.rowAtPoint(evt.getPoint());
+        int col = assignedTicketTable.columnAtPoint(evt.getPoint());
+        if (row >= 0 && col >= 0) {
+            parentPanel.removeAll();
+            parentPanel.add(indivTicketPanel);
+            parentPanel.repaint();
+            parentPanel.revalidate();
+            String id = DFT.getValueAt(selectedRow,0).toString();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            ArrayList<Tickets> ticketinfo;
+            Data_Tickets ticket = new Data_Tickets();
+            String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
+            ticketinfo = ticket.ShowRecSpec(parameters);
+            ticketNumberLbl4.setText(id);
+            ticketTypeComboBox.setSelectedItem(DFT.getValueAt(selectedRow,1).toString());
+            priorityComboBox.setSelectedItem(DFT.getValueAt(selectedRow,2).toString());
+            depComboBox.setSelectedItem(DFT.getValueAt(selectedRow,3).toString());
+            for(Tickets t: ticketinfo){
+            assigneeComboBox.setSelectedItem(t.getPersonnel());
+            ticketNameTxtField.setText(t.getTitle());
+            ticketTxtArea.setText(t.getDesc());
+            String department = depComboBox.getSelectedItem().toString();
+            Data_Tickets emp = new Data_Tickets();
+            String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
+            Object[] emplist = emp.employeeList(param).toArray();
+            assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
+            assigneeComboBox.setSelectedItem(t.getPersonnel());
+            } 
+            tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount");
+            model = (DefaultTableModel) ticketHistoryTable.getModel();
+            model.setRowCount(0);
+            for (Tickets t : tickethistory) {
+            model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+            }
+            updateTableDisplay();
+        }        
+    }//GEN-LAST:event_assignedTicketTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1621,6 +1721,11 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1694,11 +1799,11 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     public String getFirstname() {
-        return "Miguel";
+        return firstname;
     }
 
     public String getLastname() {
-        return "Escandor";
+        return lastname;
     }
 
     public String getDepartment() {
@@ -1710,7 +1815,9 @@ public class MainMenu extends javax.swing.JFrame {
         if ("Employee".equals(x)) {
             manageUserButton.setVisible(false);
             assigneeComboBox1.setVisible(false);
-            assigneeComboBox.setVisible(false);
+            assigneeComboBox.enable(false);
+            depComboBox.enable(false);
+            jLabel17.setVisible(false);
         }
         if ("Administrator".equals(x)) {
             manageUserButton.setVisible(true);
@@ -1730,19 +1837,19 @@ public class MainMenu extends javax.swing.JFrame {
     for (Tickets t : alltickets) {
     model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
     }
-    solvedtickets = mySql.ShowRec("masterrecord WHERE Status = 'CLOSED'");
+    solvedtickets = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE Status = 'Closed'");
     model = (DefaultTableModel) solvedTicketsTable.getModel();
     model.setRowCount(0);
     for (Tickets t : solvedtickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
     }
-    assignedtickets= mySql.ShowRec("masterrecord WHERE AssignedPersonnel = '" + getFirstname() + " " + getLastname() + "'");
+    assignedtickets= mySql.ShowRecSpec("SELECt * FROM masterrecord WHERE AssignedPersonnel = '" + getFirstname() + " " + getLastname() + "'");
     model = (DefaultTableModel) assignedTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : assignedtickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
     } 
-    mytickets = mySql.ShowRec("masterrecord WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
+    mytickets = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
     model = (DefaultTableModel) myTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : mytickets) {
