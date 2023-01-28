@@ -10,22 +10,30 @@ import Database.Data_Tickets;
 import Database.MySQLConnector;
 import Database.Tickets;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -41,7 +49,14 @@ public class MainMenu extends javax.swing.JFrame {
         FrameCenter.centerJFrame(this);
         setResizable(false);
         updateTableDisplay();
+        userManagerTable.setAutoCreateRowSorter(true);
+        myTicketTable.setAutoCreateRowSorter(true);
+        allTicketTable.setAutoCreateRowSorter(true);
+        assignedTicketTable.setAutoCreateRowSorter(true);
+        solvedTicketsTable.setAutoCreateRowSorter(true);
+
     }
+    
     Login login;
     NewUser newUser;
     UpdateUser updateUser;
@@ -52,6 +67,7 @@ public class MainMenu extends javax.swing.JFrame {
     private Data_Credentials creds = new Data_Credentials();
     private ArrayList<Credentials> user;
     DefaultTableModel model;
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -561,11 +577,6 @@ public class MainMenu extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        allTicketTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                allTicketTableMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(allTicketTable);
@@ -1180,11 +1191,6 @@ public class MainMenu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        assignedTicketTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                assignedTicketTableMouseClicked(evt);
-            }
-        });
         jScrollPane8.setViewportView(assignedTicketTable);
 
         jLabel23.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
@@ -1269,11 +1275,6 @@ public class MainMenu extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_logoutBttnActionPerformed
-
-    private void allTicketTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allTicketTableMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_allTicketTableMouseClicked
 
     private void cancelTicketBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTicketBttnActionPerformed
         // TODO add your handling code here:
@@ -1449,48 +1450,6 @@ public class MainMenu extends javax.swing.JFrame {
     private void assigneeComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assigneeComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_assigneeComboBox1ActionPerformed
-
-    private void assignedTicketTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTicketTableMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel DFT = (DefaultTableModel) assignedTicketTable.getModel();
-        int selectedRow =  assignedTicketTable.getSelectedRow();
-        int row = assignedTicketTable.rowAtPoint(evt.getPoint());
-        int col = assignedTicketTable.columnAtPoint(evt.getPoint());
-        if (row >= 0 && col >= 0) {
-            parentPanel.removeAll();
-            parentPanel.add(indivTicketPanel);
-            parentPanel.repaint();
-            parentPanel.revalidate();
-            String id = DFT.getValueAt(selectedRow,0).toString();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            ArrayList<Tickets> ticketinfo;
-            Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
-            ticketinfo = ticket.ShowRecSpec(parameters);
-            ticketNumberLbl4.setText(id);
-            ticketTypeComboBox.setSelectedItem(DFT.getValueAt(selectedRow,1).toString());
-            priorityComboBox.setSelectedItem(DFT.getValueAt(selectedRow,2).toString());
-            depComboBox.setSelectedItem(DFT.getValueAt(selectedRow,3).toString());
-            for(Tickets t: ticketinfo){
-            assigneeComboBox.setSelectedItem(t.getPersonnel());
-            ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDesc());
-            String department = depComboBox.getSelectedItem().toString();
-            Data_Tickets emp = new Data_Tickets();
-            String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
-            Object[] emplist = emp.employeeList(param).toArray();
-            assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
-            assigneeComboBox.setSelectedItem(t.getPersonnel());
-            } 
-            tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount");
-            model = (DefaultTableModel) ticketHistoryTable.getModel();
-            model.setRowCount(0);
-            for (Tickets t : tickethistory) {
-            model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
-            }
-            updateTableDisplay();
-        }
-    }//GEN-LAST:event_assignedTicketTableMouseClicked
 
     private void assignedTicketsBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignedTicketsBttnActionPerformed
         // TODO add your handling code here:
