@@ -84,6 +84,7 @@ public class Data_Tickets implements Data<Tickets> {
 	    while(myRes.next())
             {
                 ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator")));
+                System.out.println(ticket);
             }				
         }
 	catch(SQLException ex)
