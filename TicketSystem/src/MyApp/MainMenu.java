@@ -1812,6 +1812,9 @@ public class MainMenu extends javax.swing.JFrame {
 
     protected void setInterface(String x) {
         System.out.println("User Type: " + x);
+        System.out.println("First Name:" + getFirstname());
+        System.out.println("Last Name:" + getLastname());
+        System.out.println("Department:" + getDepartment());        
         if ("Employee".equals(x)) {
             manageUserButton.setVisible(false);
             assigneeComboBox1.setVisible(false);

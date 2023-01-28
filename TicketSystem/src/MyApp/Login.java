@@ -161,10 +161,7 @@ public class Login extends javax.swing.JFrame {
                         if (myRes.next()) {
                             String acctype = myRes.getString("acctype");
                             if (acctype.equals("Administrator") || acctype.equals("Employee")) {
-                                // Decrypt the password
-
                                 MainMenu user = new MainMenu();
-                                //insert pass information here for acctype, firstname, lastname, department
                                 user.setAcctype(myRes.getString("acctype"));
                                 user.setFirstname(myRes.getString("firstname"));
                                 user.setLastname(myRes.getString("lastname"));
