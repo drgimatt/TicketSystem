@@ -48,7 +48,7 @@ public class MainMenu extends javax.swing.JFrame {
     MySQLConnector connector;
     private String acctype, firstname, lastname, department;
     private Data_Tickets mySql = new Data_Tickets();
-    private ArrayList<Tickets> ticketsArray;
+    private ArrayList<Tickets> alltickets, solvedtickets, assignedtickets, mytickets, tickethistory;
     private Data_Credentials creds = new Data_Credentials();
     private ArrayList<Credentials> user;
     DefaultTableModel model;
@@ -1417,10 +1417,10 @@ public class MainMenu extends javax.swing.JFrame {
         ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
         ticket.addRow("alltickets", information);
         ticket.addRow("masterrecord", information);
-        ticketsArray = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount");
+        tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount");
         model = (DefaultTableModel) ticketHistoryTable.getModel();
         model.setRowCount(0);
-        for (Tickets t : ticketsArray) {
+        for (Tickets t : tickethistory) {
         model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
         }
         updateTableDisplay();
@@ -1480,10 +1480,10 @@ public class MainMenu extends javax.swing.JFrame {
             assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
             assigneeComboBox.setSelectedItem(t.getPersonnel());
             } 
-            ticketsArray = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount");
+            tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount");
             model = (DefaultTableModel) ticketHistoryTable.getModel();
             model.setRowCount(0);
-            for (Tickets t : ticketsArray) {
+            for (Tickets t : tickethistory) {
             model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
             }
             updateTableDisplay();
@@ -1537,10 +1537,10 @@ public class MainMenu extends javax.swing.JFrame {
                 ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
                 ticket.addRow("alltickets", information);
                 ticket.addRow("masterrecord", information);
-                ticketsArray = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount");
+                tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount");
                 model = (DefaultTableModel) ticketHistoryTable.getModel();
                 model.setRowCount(0);
-                for (Tickets t : ticketsArray) {
+                for (Tickets t : tickethistory) {
                 model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
                 }
                 updateTableDisplay();
@@ -1763,28 +1763,28 @@ public class MainMenu extends javax.swing.JFrame {
     for(Credentials u: user) {    
     model.addRow(new Object[] {u.getNum(),u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
     }
-    ticketsArray = mySql.ShowRec("alltickets");
+    alltickets = mySql.ShowRec("alltickets");
     model = (DefaultTableModel) allTicketTable.getModel();
     model.setRowCount(0);
-    for (Tickets t : ticketsArray) {
-    model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
+    for (Tickets t : alltickets) {
+    model.addRow(new Object[]{t.getId(), t.getCreator(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
     }
-    ticketsArray = mySql.ShowRec("masterrecord WHERE Status = 'CLOSED'");
+    solvedtickets = mySql.ShowRec("masterrecord WHERE Status = 'CLOSED'");
     model = (DefaultTableModel) solvedTicketsTable.getModel();
     model.setRowCount(0);
-    for (Tickets t : ticketsArray) {
+    for (Tickets t : solvedtickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
     }
-    ticketsArray = mySql.ShowRec("masterrecord WHERE AssignedPersonnel = '" + getFirstname() + " " + getLastname() + "'");
+    assignedtickets= mySql.ShowRec("masterrecord WHERE AssignedPersonnel = '" + getFirstname() + " " + getLastname() + "'");
     model = (DefaultTableModel) assignedTicketTable.getModel();
     model.setRowCount(0);
-    for (Tickets t : ticketsArray) {
+    for (Tickets t : assignedtickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
     } 
-    ticketsArray = mySql.ShowRec("masterrecord WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
+    mytickets = mySql.ShowRec("masterrecord WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
     model = (DefaultTableModel) myTicketTable.getModel();
     model.setRowCount(0);
-    for (Tickets t : ticketsArray) {
+    for (Tickets t : mytickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
     } 
     }
