@@ -7,10 +7,13 @@ package MyApp;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import Database.Credentials;
 import Database.Data_Credentials;
+import Database.EncryptionDecryption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -389,83 +392,89 @@ public class UpdateUser extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBttn1ActionPerformed
 
     private void UpdateAccountBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountBttnActionPerformed
-        // TODO add your handling code here:
-        boolean emailAddCorFormat = false; // implement email format check
-        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat birthYear = new SimpleDateFormat("yyyy");
-        int currYear = Year.now().getValue();
-        String fname = f_namefld.getText();
-        String mname = m_namefld.getText();
-        String lname = l_namefld.getText();
-        String email = em_addfld.getText();
-        char[] ch = email.toCharArray();
-        CharSequence seq = new StringBuilder(1).append(ch);
-         String regex = "^(.+)@(.+)$";  
-        //Compile regular expression to get the pattern  
-        Pattern pattern = Pattern.compile(regex);  
-       
-        for(char eml : ch){  
-            //Create instance of matcher   
-            Matcher matcher = pattern.matcher(seq);  
-            if(matcher.matches()==false){
-                JOptionPane.showMessageDialog(null,"Invalid Email");  
+        try {                                                  
+            // TODO add your handling code here:
+            EncryptionDecryption hash = new EncryptionDecryption();
+            boolean emailAddCorFormat = false; // implement email format check
+            SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat birthYear = new SimpleDateFormat("yyyy");
+            int currYear = Year.now().getValue();
+            String fname = f_namefld.getText();
+            String mname = m_namefld.getText();
+            String lname = l_namefld.getText();
+            String email = em_addfld.getText();
+            char[] ch = email.toCharArray();
+            CharSequence seq = new StringBuilder(1).append(ch);
+            String regex = "^(.+)@(.+)$";
+            //Compile regular expression to get the pattern
+            Pattern pattern = Pattern.compile(regex);
+            
+            for(char eml : ch){
+                //Create instance of matcher
+                Matcher matcher = pattern.matcher(seq);
+                if(matcher.matches()==false){  
+                    JOptionPane.showMessageDialog(null,"Invalid Email");
+                }
+                else
+                    emailAddCorFormat = true;
             }
-            else
-                emailAddCorFormat = true;
-        }
-        String mnum = m_numfld.getText();
-        String uname = usernameFld.getText();
-        String pass = passFld.getText(); // implement password encryption - passwords are not hashed on the database
-        String conpass = passConFld.getText();
-        String acttyp = acctypeSel.getSelectedItem().toString();
-        String empnum = empIDFld.getText();
-        
-        String bday = "";
-        String sdate = "";
-        int age = 0;
-        
-        try {
-            bday = dFormat.format(birthday.getDate());
+            String mnum = m_numfld.getText();
+            String uname = usernameFld.getText();
+            String pass = passFld.getText(); //
+            String conpass = passConFld.getText();
+            String acttyp = acctypeSel.getSelectedItem().toString();
+            String empnum = empIDFld.getText();
+            
+            String bday = "";
+            String sdate = "";
+            int age = 0;
+            
+            try {
+                bday = dFormat.format(birthday.getDate());
+            } catch (Exception ex) {
+                //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Birthdate was not provided.","Missing Birthdate",JOptionPane.ERROR_MESSAGE);
+                System.out.println("Blank field - Birthdate");
+            }
+            
+            try {
+                sdate = dFormat.format(dateStart.getDate());
+            } catch (Exception ex) {
+                //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Startdate was not provided.","Missing Startdate",JOptionPane.ERROR_MESSAGE);
+                System.out.println("Blank field - Birthdate");
+            }
+            
+            try {
+                age = currYear - Integer.parseInt(birthYear.format(birthday.getDate()));
+            } catch (Exception ex) {
+                //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Age cannot be computed");
+            }
+            
+            String gender = genderFld.getText();
+            String resi = resFld.getText();
+            String dep = deptFld.getSelectedItem().toString();
+            String pos = posFld.getText();
+            
+            boolean passAreEqual = pass.equals(conpass);
+            if (passAreEqual && emailAddCorFormat){ //add appropriate checks for user-provided data
+                pass = hash.encrypt(pass);
+                String table = "credentials";
+                Data_Credentials creds = new Data_Credentials();
+                Credentials information = new Credentials (num,empnum,uname,pass,email,fname,mname,lname,age,bday,mnum,gender,resi,acttyp,sdate,dep,pos);
+                creds.editRow(table,information);
+                clearflds();
+                dispose();
+            }
+            else if (emailAddCorFormat == false){
+                JOptionPane.showMessageDialog(null, "The email provided is not acceptable","Email Not Accepted",JOptionPane.ERROR_MESSAGE);
+            }
+            else if (passAreEqual == false){
+                JOptionPane.showMessageDialog(null, "The passwords entered don't match!","Password Mismatch",JOptionPane.ERROR_MESSAGE);
+            }
         } catch (Exception ex) {
-            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Birthdate was not provided.","Missing Birthdate",JOptionPane.ERROR_MESSAGE);
-            System.out.println("Blank field - Birthdate");
-        }
-        
-        try {
-            sdate = dFormat.format(dateStart.getDate());
-        } catch (Exception ex) {
-            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Startdate was not provided.","Missing Startdate",JOptionPane.ERROR_MESSAGE);
-            System.out.println("Blank field - Birthdate");            
-        }   
-        
-        try {
-            age = currYear - Integer.parseInt(birthYear.format(birthday.getDate()));
-        } catch (Exception ex) {
-            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Age cannot be computed");            
-        }
-        
-        String gender = genderFld.getText();
-        String resi = resFld.getText();
-        String dep = deptFld.getSelectedItem().toString();
-        String pos = posFld.getText();
-        
-        boolean passAreEqual = pass.equals(conpass);
-        if (passAreEqual && emailAddCorFormat){ //add appropriate checks for user-provided data
-            String table = "credentials";
-            Data_Credentials creds = new Data_Credentials();
-            Credentials information = new Credentials (num,empnum,uname,pass,email,fname,mname,lname,age,bday,mnum,gender,resi,acttyp,sdate,dep,pos);
-            creds.editRow(table,information);
-            clearflds();
-            dispose();
-        }
-        else if (emailAddCorFormat == false){
-            JOptionPane.showMessageDialog(null, "The email provided is not acceptable","Email Not Accepted",JOptionPane.ERROR_MESSAGE);
-        }
-        else if (passAreEqual == false){
-            JOptionPane.showMessageDialog(null, "The passwords entered don't match!","Password Mismatch",JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(UpdateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_UpdateAccountBttnActionPerformed
 
@@ -586,29 +595,34 @@ public class UpdateUser extends javax.swing.JFrame {
     }
     
     public void populateflds(String t) throws ParseException{
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        ArrayList<Credentials> userinfo;
-        Data_Credentials creds = new Data_Credentials();
-        String parameters = "credentials WHERE num = '" + t + "'";
-        userinfo = creds.ShowRec(parameters);
-        for(Credentials u: userinfo){
-        empIDFld.setText(u.getEmpnum());
-        posFld.setText(u.getPosition());
-        resFld.setText(u.getResidence());
-        genderFld.setText(u.getGender());
-        f_namefld.setText(u.getF_name());
-        m_namefld.setText(u.getM_name());
-        l_namefld.setText(u.getL_name());
-        m_numfld.setText(u.getPhonenum());
-        em_addfld.setText(u.getEmail());
-        usernameFld.setText(u.getU_name());
-        passFld.setText(u.getPass());
-        passConFld.setText(u.getPass());
-        acctypeSel.setSelectedItem(u.getActType());
-        deptFld.setSelectedItem(u.getDepartment());
-        birthday.setDate(format.parse(u.getBday()));
-        dateStart.setDate(format.parse(u.getStartdate()));
-        num = u.getNum();
+        try {
+            EncryptionDecryption hash = new EncryptionDecryption();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            ArrayList<Credentials> userinfo;
+            Data_Credentials creds = new Data_Credentials();
+            String parameters = "credentials WHERE num = '" + t + "'";
+            userinfo = creds.ShowRec(parameters);
+            for(Credentials u: userinfo){
+                empIDFld.setText(u.getEmpnum());
+                posFld.setText(u.getPosition());
+                resFld.setText(u.getResidence());
+                genderFld.setText(u.getGender());
+                f_namefld.setText(u.getF_name());
+                m_namefld.setText(u.getM_name());
+                l_namefld.setText(u.getL_name());
+                m_numfld.setText(u.getPhonenum());
+                em_addfld.setText(u.getEmail());
+                usernameFld.setText(u.getU_name());
+                passFld.setText(hash.decrypt(u.getPass()));
+                passConFld.setText(hash.decrypt(u.getPass()));
+                acctypeSel.setSelectedItem(u.getActType());
+                deptFld.setSelectedItem(u.getDepartment());
+                birthday.setDate(format.parse(u.getBday()));
+                dateStart.setDate(format.parse(u.getStartdate()));
+                num = u.getNum();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UpdateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -33,7 +33,7 @@ public class Data_Credentials implements Data<Credentials>{
             System.out.println(qry);
 	    while(myRes.next())
             {
-                user.add(new Credentials(myRes.getInt("num"), myRes.getString("empnum"), myRes.getString("username"), myRes.getBytes("password"), myRes.getString("email_add"), myRes.getString("firstname"), myRes.getString("middlename"), myRes.getString("lastname"), myRes.getInt("age"), myRes.getString("birthday"), myRes.getString("phonenum"), myRes.getString("gender"), myRes.getString("residence"), myRes.getString("acctype"), myRes.getString("startdate"), myRes.getString("department"), myRes.getString("position")));
+                user.add(new Credentials(myRes.getInt("num"), myRes.getString("empnum"), myRes.getString("username"), myRes.getString("password"), myRes.getString("email_add"), myRes.getString("firstname"), myRes.getString("middlename"), myRes.getString("lastname"), myRes.getInt("age"), myRes.getString("birthday"), myRes.getString("phonenum"), myRes.getString("gender"), myRes.getString("residence"), myRes.getString("acctype"), myRes.getString("startdate"), myRes.getString("department"), myRes.getString("position")));
             }				
         }
 	catch(SQLException ex)

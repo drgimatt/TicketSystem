@@ -147,24 +147,21 @@ public class Login extends javax.swing.JFrame {
         if (username.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            EncryptionDecryption encryptionDecryption = new EncryptionDecryption();
-            // Encrypt the password
-            byte[] encryptedPassword = encryptionDecryption.encrypt(password);
-
-            // Check if encryption was successful
-            if (encryptedPassword != null) {
-                // Query the credentials table to check if the entered username and encrypted password match
-                String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + encryptedPassword + "'";
                 try {
-                    myConn = MySQLConnector.getInstance().getConnection();
-                    myStmt=myConn.createStatement();
-                    myRes = myStmt.executeQuery(qry);
-                    System.out.println(qry);
+                    EncryptionDecryption hash = new EncryptionDecryption();
+                    // Encrypt the password
+                    // Check if encryption was successful
+                    // Query the credentials table to check if the entered username and encrypted password match
+                    String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + hash.encrypt(password) + "'";
+                    try {
+                        myConn = MySQLConnector.getInstance().getConnection();
+                        myStmt=myConn.createStatement();
+                        myRes = myStmt.executeQuery(qry);
+                        System.out.println(qry);
                         if (myRes.next()) {
                             String acctype = myRes.getString("acctype");
                             if (acctype.equals("Administrator") || acctype.equals("Employee")) {
                                 // Decrypt the password
-                                password = encryptionDecryption.decrypt(myRes.getBytes("password"));
 
                                 MainMenu user = new MainMenu();
                                 //insert pass information here for acctype, firstname, lastname, department
@@ -180,20 +177,24 @@ public class Login extends javax.swing.JFrame {
                             usernameFld.setText("");
                             passwordFld.setText("");
                         }
+                        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    finally{
+                        if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
+                        if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
+                        if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}
+                    }
+                    
+                } catch (Exception ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }                  
 
-                } catch (SQLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (PropertyVetoException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            finally{
-                if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-                if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-                if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-            }                  
-            }
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
