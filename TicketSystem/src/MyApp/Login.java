@@ -8,11 +8,15 @@ import Database.Credentials;
 import Database.Data_Credentials;
 import Database.MySQLConnectorOrig;
 import Database.EncryptionDecryption;
+import Database.MySQLConnector;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.beans.PropertyVetoException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +38,9 @@ public class Login extends javax.swing.JFrame {
     }
     NewUser newUser;
     MainMenu mainMenu;
-
+    Connection myConn = null;
+    Statement myStmt = null;
+    ResultSet myRes = null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,11 +139,7 @@ public class Login extends javax.swing.JFrame {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
 
-        PreparedStatement ps;
-        ResultSet rs;
         Data_Credentials login = new Data_Credentials();
-        MySQLConnectorOrig connector;
-        connector = MySQLConnectorOrig.getInstance();
         String username = usernameFld.getText();
         String password = passwordFld.getText();
 
@@ -152,24 +154,24 @@ public class Login extends javax.swing.JFrame {
             // Check if encryption was successful
             if (encryptedPassword != null) {
                 // Query the credentials table to check if the entered username and encrypted password match
-                String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + new String(encryptedPassword) + "'";
+                String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + encryptedPassword + "'";
                 try {
-                    Connection conn = connector.getConnection();
-                    if (conn != null) {
-                        ps = conn.prepareStatement(qry);
-                        rs = ps.executeQuery();
-                        if (rs.next()) {
-                            String acctype = rs.getString("acctype");
+                    myConn = MySQLConnector.getInstance().getConnection();
+                    myStmt=myConn.createStatement();
+                    myRes = myStmt.executeQuery(qry);
+                    System.out.println(qry);
+                        if (myRes.next()) {
+                            String acctype = myRes.getString("acctype");
                             if (acctype.equals("Administrator") || acctype.equals("Employee")) {
                                 // Decrypt the password
-                                password = encryptionDecryption.decrypt(rs.getBytes("password"));
+                                password = encryptionDecryption.decrypt(myRes.getBytes("password"));
 
                                 MainMenu user = new MainMenu();
                                 //insert pass information here for acctype, firstname, lastname, department
-                                user.setAcctype(rs.getString("acctype"));
-                                user.setFirstname(rs.getString("firstname"));
-                                user.setLastname(rs.getString("lastname"));
-                                user.setDepartment(rs.getString("department"));
+                                user.setAcctype(myRes.getString("acctype"));
+                                user.setFirstname(myRes.getString("firstname"));
+                                user.setLastname(myRes.getString("lastname"));
+                                user.setDepartment(myRes.getString("department"));
                                 user.show();
                             }
                             dispose();
@@ -178,12 +180,19 @@ public class Login extends javax.swing.JFrame {
                             usernameFld.setText("");
                             passwordFld.setText("");
                         }
-                        ps.close();
-                        rs.close();
-                    }
+
                 } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }                
+                } catch (IOException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            finally{
+                if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
+                if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
+            }                  
             }
         }
     }//GEN-LAST:event_loginBtnActionPerformed

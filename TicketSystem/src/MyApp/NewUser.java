@@ -7,6 +7,7 @@ package MyApp;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import Database.Credentials;
 import Database.Data_Credentials;
+import Database.EncryptionDecryption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
@@ -415,7 +416,11 @@ public class NewUser extends javax.swing.JFrame {
         }
         String mnum = m_numfld.getText();
         String uname = usernameFld.getText();
-        String pass = passFld.getText(); // implement password encryption - passwords are not hashed on the database
+        EncryptionDecryption encryptionDecryption = new EncryptionDecryption();
+        String pass = passFld.getText();
+        byte[] encryptedPassword = encryptionDecryption.encrypt(pass);
+
+// implement password encryption - passwords are not hashed on the database
         String conpass = passConFld.getText();
         String acttyp = acctypeSel.getSelectedItem().toString();
         
@@ -457,7 +462,7 @@ public class NewUser extends javax.swing.JFrame {
         if (passAreEqual && emailAddCorFormat){ //add appropriate checks for user-provided data
             String table = "credentials";
             Data_Credentials creds = new Data_Credentials();
-            Credentials information = new Credentials (empnum,uname,pass,email,fname,mname,lname,age,bday,mnum,gender,resi,acttyp,sdate,dep,pos);
+            Credentials information = new Credentials (empnum,uname,encryptedPassword,email,fname,mname,lname,age,bday,mnum,gender,resi,acttyp,sdate,dep,pos);
             creds.addRow(table,information);
             clearflds();
         }
