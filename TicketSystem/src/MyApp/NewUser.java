@@ -85,7 +85,7 @@ public class NewUser extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         dateStart = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         resetBttn.setBackground(new java.awt.Color(204, 153, 0));
         resetBttn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N

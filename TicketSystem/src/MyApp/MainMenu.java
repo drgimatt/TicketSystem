@@ -1349,11 +1349,10 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel tableModel = (DefaultTableModel) userManagerTable.getModel();
         if (userManagerTable.getSelectedRowCount()==1){
             int ans = JOptionPane.showOptionDialog(this,"Are you sure you want to delete this entry?", "Delete User", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
             if (ans == JOptionPane.YES_OPTION){
-            creds.deleteRowSpec(tableModel.getValueAt(userManagerTable.getSelectedRow(), 0).toString());
+            creds.deleteRowSpec(userManagerTable.getValueAt(userManagerTable.getSelectedRow(), 0).toString());
             updateTableDisplay();
             }
         } else {
@@ -1372,7 +1371,7 @@ public class MainMenu extends javax.swing.JFrame {
         updateUser = new UpdateUser();
         updateUser.setVisible(true);
         try {
-            updateUser.populateflds((model.getValueAt(selectedRow, 0).toString()));
+            updateUser.populateflds((userManagerTable.getValueAt(selectedRow, 0).toString()));
         } catch (ParseException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1585,9 +1584,9 @@ public class MainMenu extends javax.swing.JFrame {
             Data_Tickets ticket = new Data_Tickets();
             String parameters = "SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY Number ASC";
             ticketinfo = ticket.ShowRecSpec(parameters);
-            ticketTypeComboBox.setSelectedItem(DFT.getValueAt(selectedRow,1).toString());
-            priorityComboBox.setSelectedItem(DFT.getValueAt(selectedRow,5).toString());
-            depComboBox.setSelectedItem(DFT.getValueAt(selectedRow,3).toString());
+            ticketTypeComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,1).toString());
+            priorityComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,5).toString());
+            depComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             ticketNameTxtField.setText(t.getTitle());
             ticketTxtArea.setText(t.getDesc());
@@ -1616,16 +1615,16 @@ public class MainMenu extends javax.swing.JFrame {
             parentPanel.add(indivTicketPanel);
             parentPanel.repaint();
             parentPanel.revalidate();
-            String id = DFT.getValueAt(selectedRow,0).toString();
+            String id = assignedTicketTable.getValueAt(selectedRow,0).toString();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             ArrayList<Tickets> ticketinfo;
             Data_Tickets ticket = new Data_Tickets();
             String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
             ticketinfo = ticket.ShowRecSpec(parameters);
             ticketNumberLbl4.setText(id);
-            ticketTypeComboBox.setSelectedItem(DFT.getValueAt(selectedRow,1).toString());
-            priorityComboBox.setSelectedItem(DFT.getValueAt(selectedRow,2).toString());
-            depComboBox.setSelectedItem(DFT.getValueAt(selectedRow,3).toString());
+            ticketTypeComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,1).toString());
+            priorityComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,2).toString());
+            depComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             assigneeComboBox.setSelectedItem(t.getPersonnel());
             ticketNameTxtField.setText(t.getTitle());
