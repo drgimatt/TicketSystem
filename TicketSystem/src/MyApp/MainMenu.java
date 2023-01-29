@@ -1508,7 +1508,7 @@ public class MainMenu extends javax.swing.JFrame {
         String TicketType = ticketTypeComboBox1.getSelectedItem().toString();
         String PriorityLevel = priorityComboBox1.getSelectedItem().toString();
         String AssignedDepartment = depComboBox3.getSelectedItem().toString();
-        String RevCount = "0";
+        int RevCount = 0;
         String Creator = getFirstname() + " " + getLastname();
         String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + AssignedDepartment + "'";
         String notes = "";
@@ -1574,15 +1574,14 @@ public class MainMenu extends javax.swing.JFrame {
         String PriorityLevel = priorityComboBox.getSelectedItem().toString();
         String AssignedDepartment = depComboBox.getSelectedItem().toString();
         String OldRevCount = "";
-        String NewRevCount = "";
+        int NewRevCount = 0;
         String DateCreated = "";
         String Creator = getFirstname() + " " + getLastname();
         String Notes = ticketNotesTextArea.getText();
         for (Tickets t: ticketinfo){
-        OldRevCount = t.getRevcount();
-            System.out.println(OldRevCount);
-        int increment = Integer.parseInt(OldRevCount)+1;        
-        NewRevCount = Integer.toString(increment);
+        OldRevCount = Integer.toString(t.getRevcount());
+        int increment = t.getRevcount()+1;        
+        NewRevCount = increment;
         DateCreated = t.getDateCreated();
         }
         System.out.println(OldRevCount);
@@ -1660,14 +1659,14 @@ public class MainMenu extends javax.swing.JFrame {
                 String PriorityLevel = priorityComboBox.getSelectedItem().toString();
                 String AssignedDepartment = depComboBox.getSelectedItem().toString();
                 String OldRevCount = "";
-                String NewRevCount = "";
+                int NewRevCount = 0;
                 String DateCreated = "";
                 String Creator = getFirstname() + " " + getLastname(); 
                 String Notes = ticketNotesTextArea.getText();
                 for (Tickets t: ticketinfo){
-                OldRevCount = t.getRevcount();
-                int increment = Integer.parseInt(OldRevCount)+1;        
-                NewRevCount = Integer.toString(increment);
+                OldRevCount = Integer.toString(t.getRevcount());
+                int increment = t.getRevcount()+1;        
+                NewRevCount = increment;
                 DateCreated = t.getDateCreated();
                 }
                 String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();

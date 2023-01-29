@@ -84,7 +84,7 @@ public class Data_Tickets implements Data<Tickets> {
             System.out.println(qry);
 	    while(myRes.next())
             {
-                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getBoolean("FollowUp")));
+                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getInt("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getBoolean("FollowUp")));
             }				
         }
 	catch(SQLException ex)
@@ -113,7 +113,7 @@ public class Data_Tickets implements Data<Tickets> {
 	    myRes = myStmt.executeQuery(parameters);
 	    while(myRes.next())
             {
-                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getBoolean("FollowUp")));
+                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getInt("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getBoolean("FollowUp")));
             }				
         }
 	catch(SQLException ex)

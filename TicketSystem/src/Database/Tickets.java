@@ -10,7 +10,7 @@ package Database;
  */
 public class Tickets {
     private String id;
-    private String revcount;
+    private int revcount;
     private String title;
     private String desc;
     private String type;
@@ -24,7 +24,7 @@ public class Tickets {
     private String notes;
     private boolean followup;
 
-    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes, boolean followup) {
+    public Tickets(String id, int revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes, boolean followup) {
         this.id = id;
         this.revcount = revcount;
         this.title = title;
@@ -114,7 +114,7 @@ public class Tickets {
         return status;
     }
 
-    public String getRevcount() {
+    public int getRevcount() {
         return revcount;
     }
 
