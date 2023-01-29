@@ -142,6 +142,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        resetTicketBttn1 = new javax.swing.JButton();
         indivTicketPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         ticketNumberLbl1 = new javax.swing.JLabel();
@@ -787,7 +788,7 @@ public class MainMenu extends javax.swing.JFrame {
         createTicketTxtArea.setRows(5);
         jScrollPane5.setViewportView(createTicketTxtArea);
 
-        cancelTicketBttn.setBackground(new java.awt.Color(0, 153, 51));
+        cancelTicketBttn.setBackground(new java.awt.Color(153, 0, 0));
         cancelTicketBttn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cancelTicketBttn.setForeground(new java.awt.Color(255, 255, 255));
         cancelTicketBttn.setText("CANCEL");
@@ -820,6 +821,17 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel19.setText("Ticket Description");
 
+        resetTicketBttn1.setBackground(new java.awt.Color(0, 153, 51));
+        resetTicketBttn1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        resetTicketBttn1.setForeground(new java.awt.Color(255, 255, 255));
+        resetTicketBttn1.setText("RESET");
+        resetTicketBttn1.setBorder(new javax.swing.border.MatteBorder(null));
+        resetTicketBttn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetTicketBttn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -837,18 +849,20 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(307, 307, 307)
                         .addComponent(jLabel7))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
+                        .addGap(195, 195, 195)
                         .addComponent(createTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addComponent(cancelTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(resetTicketBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(newTicketName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -856,11 +870,12 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                    .addComponent(createTicketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetTicketBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout createTicketPanelLayout = new javax.swing.GroupLayout(createTicketPanel);
@@ -871,7 +886,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         createTicketPanelLayout.setVerticalGroup(
             createTicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1657,6 +1672,11 @@ public class MainMenu extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_assignedTicketTableMouseClicked
 
+    private void resetTicketBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetTicketBttn1ActionPerformed
+        // TODO add your handling code here:
+        resetCreateFields();
+    }//GEN-LAST:event_resetTicketBttn1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1776,6 +1796,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> priorityComboBox;
     private javax.swing.JComboBox<String> priorityComboBox1;
     private javax.swing.JButton refreshTableButton;
+    private javax.swing.JButton resetTicketBttn1;
     private javax.swing.JButton solvedTickets;
     private javax.swing.JPanel solvedTicketsPanel;
     private javax.swing.JTable solvedTicketsTable;
