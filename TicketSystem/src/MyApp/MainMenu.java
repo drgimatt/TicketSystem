@@ -1587,10 +1587,8 @@ public class MainMenu extends javax.swing.JFrame {
         }
         System.out.println(OldRevCount);
         System.out.println(NewRevCount);
-        String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + AssignedDepartment + "'";
-        Object[] emplist = ticket.employeeList(param).toArray();
-        assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
-        String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
+        String AssignedPersonnel = (String)assigneeComboBox.getSelectedItem();
+        System.out.println(AssignedPersonnel);
         String DateUpdated = tstamp.toString();
         String Status = "Open";
         boolean followup = false;
@@ -1672,9 +1670,6 @@ public class MainMenu extends javax.swing.JFrame {
                 NewRevCount = Integer.toString(increment);
                 DateCreated = t.getDateCreated();
                 }
-                String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + AssignedDepartment + "'";
-                Object[] emplist = ticket.employeeList(param).toArray();
-                assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
                 String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
                 String DateUpdated = tstamp.toString();
                 String Status = "Closed";
