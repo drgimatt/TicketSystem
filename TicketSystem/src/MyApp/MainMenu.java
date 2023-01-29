@@ -2097,7 +2097,7 @@ public class MainMenu extends javax.swing.JFrame {
     for (Tickets t : assignedtickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
     } 
-    mytickets = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE Creator = '" + getFirstname() + " " + getLastname() + "'");
+    mytickets = mySql.ShowRecSpec("SELECT m1.* FROM masterrecord m1 LEFT JOIN masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount and m1.Creator = m2.Creator) WHERE m2.RevisionCount IS NULL HAVING m1.Creator = '" + getFirstname() + " " + getLastname() + "' ORDER BY TicketID ASC");
     model = (DefaultTableModel) myTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : mytickets) {
