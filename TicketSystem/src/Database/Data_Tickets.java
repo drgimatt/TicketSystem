@@ -137,7 +137,7 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
             myStmt=myConn.createStatement();
-            String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '"+ ticket.getStatus() + "', '" + ticket.getCreator()+ "', '" + ticket.getFollowup() + "')";
+            String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, FollowUp)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '"+ ticket.getStatus() + "', '" + ticket.getCreator() + "', '" + ticket.getNotes()+ "', '" + ticket.getFollowup() + "')";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             JOptionPane.showMessageDialog(null, "Entry added");            
