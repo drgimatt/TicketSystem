@@ -22,9 +22,9 @@ public class Tickets {
     private String status;
     private String creator;
     private String notes;
-    private boolean followup;
+    private int followup;
 
-    public Tickets(String id, int revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes, boolean followup) {
+    public Tickets(String id, int revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes, int followup) {
         this.id = id;
         this.revcount = revcount;
         this.title = title;
@@ -126,7 +126,7 @@ public class Tickets {
         return notes;
     }
 
-    public boolean getFollowup() {
+    public int getFollowup() {
         return followup;
     }
 
