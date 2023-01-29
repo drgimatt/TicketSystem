@@ -84,7 +84,7 @@ public class Data_Tickets implements Data<Tickets> {
             System.out.println(qry);
 	    while(myRes.next())
             {
-                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes")));
+                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getBoolean("FollowUp")));
             }				
         }
 	catch(SQLException ex)
@@ -113,7 +113,7 @@ public class Data_Tickets implements Data<Tickets> {
 	    myRes = myStmt.executeQuery(parameters);
 	    while(myRes.next())
             {
-                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes")));
+                ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getString("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getBoolean("FollowUp")));
             }				
         }
 	catch(SQLException ex)
@@ -137,7 +137,7 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
             myStmt=myConn.createStatement();
-            String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '"+ ticket.getStatus() + "', '" + ticket.getCreator()+ "')";
+            String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '"+ ticket.getStatus() + "', '" + ticket.getCreator()+ "', '" + ticket.getFollowup() + "')";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             JOptionPane.showMessageDialog(null, "Entry added");            
@@ -161,7 +161,7 @@ public class Data_Tickets implements Data<Tickets> {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
             myStmt=myConn.createStatement();
-            String qry = "UPDATE " + table + " SET SubjectTitle = " + ticket.getTitle() + ", SubjectDesc = '" + ticket.getDesc() + "', TicketType = '" + ticket.getType() + "', PriorityLevel = '" + ticket.getPriority() + "', AssignedDepartment = '" + ticket.getDepartment() + "', AssignedPersonnel = '" + ticket.getPersonnel() + "', DateCreated = '" + ticket.getDateCreated() + "', DateUpdated = '" + ticket.getDateUpdated() + "', Status = '" + ticket.getStatus() + "', Creator = '" + ticket.getCreator() + "', Notes = '" + ticket.getNotes() + "' WHERE TicketID = " + "'" + ticket.getId() + "'";
+            String qry = "UPDATE " + table + " SET SubjectTitle = " + ticket.getTitle() + ", SubjectDesc = '" + ticket.getDesc() + "', TicketType = '" + ticket.getType() + "', PriorityLevel = '" + ticket.getPriority() + "', AssignedDepartment = '" + ticket.getDepartment() + "', AssignedPersonnel = '" + ticket.getPersonnel() + "', DateCreated = '" + ticket.getDateCreated() + "', DateUpdated = '" + ticket.getDateUpdated() + "', Status = '" + ticket.getStatus() + "', Creator = '" + ticket.getCreator() + "', Notes = '" + ticket.getNotes() + "', FollowUp = '" + ticket.getFollowup() + "' WHERE TicketID = " + "'" + ticket.getId() + "'";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
@@ -180,7 +180,33 @@ public class Data_Tickets implements Data<Tickets> {
             if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
             if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
         }        
-    } 
+    }
+        
+        public void editRowFollowup(String table, String flag, String num)
+    {
+        try{
+            myConn = MySQLConnector.getInstance().getConnection();
+            myStmt=myConn.createStatement();
+            String qry = "UPDATE " + table + " SET FollowUp = '" + flag + "' WHERE TicketID = " + "'" + num + "'";
+            System.out.println(qry);
+            myStmt.executeUpdate(qry);
+            myStmt.close();
+            JOptionPane.showMessageDialog(null, "Entry updated");            
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
+            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
+            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
+        }        
+    }        
         public void deleteRowParam(String table, Tickets ticket, String param)
     {
         try{

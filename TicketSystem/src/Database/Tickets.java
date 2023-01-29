@@ -22,8 +22,9 @@ public class Tickets {
     private String status;
     private String creator;
     private String notes;
+    private boolean followup;
 
-    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
+    public Tickets(String id, String revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes, boolean followup) {
         this.id = id;
         this.revcount = revcount;
         this.title = title;
@@ -37,6 +38,7 @@ public class Tickets {
         this.status = status;
         this.creator = creator;
         this.notes = notes;
+        this.followup = followup;
     }    
     
     public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
@@ -123,7 +125,11 @@ public class Tickets {
     public String getNotes(){
         return notes;
     }
-    
+
+    public boolean getFollowup() {
+        return followup;
+    }
+
 }
 
 
