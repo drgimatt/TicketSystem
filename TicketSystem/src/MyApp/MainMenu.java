@@ -10,30 +10,17 @@ import Database.Data_Tickets;
 import Database.MySQLConnector;
 import Database.Tickets;
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -56,6 +43,25 @@ public class MainMenu extends javax.swing.JFrame {
         solvedTicketsTable.setAutoCreateRowSorter(true);
 
     }
+
+    public MainMenu(String acctype, String firstname, String lastname, String department) {
+        this.acctype = acctype;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.department = department;
+        initComponents();
+        FrameCenter.centerJFrame(this);
+        setResizable(false);
+        updateTableDisplay();
+        userManagerTable.setAutoCreateRowSorter(true);
+        myTicketTable.setAutoCreateRowSorter(true);
+        allTicketTable.setAutoCreateRowSorter(true);
+        assignedTicketTable.setAutoCreateRowSorter(true);
+        solvedTicketsTable.setAutoCreateRowSorter(true);
+        setInterface(acctype);        
+    }
+    
+    
     
     Login login;
     NewUser newUser;
@@ -1779,7 +1785,6 @@ public class MainMenu extends javax.swing.JFrame {
 
     public void setAcctype(String acctype) {
         this.acctype = acctype;
-        setInterface(acctype);
     }
 
     public void setFirstname(String firstname) {

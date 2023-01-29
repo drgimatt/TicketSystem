@@ -159,13 +159,16 @@ public class Login extends javax.swing.JFrame {
                         myRes = myStmt.executeQuery(qry);
                         System.out.println(qry);
                         if (myRes.next()) {
-                            String acctype = myRes.getString("acctype");
+                            String acctype = myRes.getString(14);
+                            String fname = myRes.getString(6);
+                            String lname = myRes.getString(8);
+                            String dept = myRes.getString(16);
+                            System.out.println(acctype);
+                            System.out.println(fname);
+                            System.out.println(lname);
+                            System.out.println(dept);                            
                             if (acctype.equals("Administrator") || acctype.equals("Employee")) {
-                                MainMenu user = new MainMenu();
-                                user.setAcctype(myRes.getString("acctype"));
-                                user.setFirstname(myRes.getString("firstname"));
-                                user.setLastname(myRes.getString("lastname"));
-                                user.setDepartment(myRes.getString("department"));
+                                MainMenu user = new MainMenu(acctype,fname,lname,dept);
                                 user.show();
                             }
                             dispose();
