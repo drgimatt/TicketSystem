@@ -2072,7 +2072,7 @@ public class MainMenu extends javax.swing.JFrame {
     for(Credentials u: user) {    
     model.addRow(new Object[] {u.getNum(),u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
     }
-    alltickets = mySql.ShowRec("alltickets");
+    alltickets = mySql.ShowRecSpec("SELECT m1.* FROM masterrecord m1 LEFT JOIN masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL ORDER BY TicketID DESC");
     model = (DefaultTableModel) allTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : alltickets) {
