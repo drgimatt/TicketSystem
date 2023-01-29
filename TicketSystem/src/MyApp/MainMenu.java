@@ -556,33 +556,33 @@ public class MainMenu extends javax.swing.JFrame {
         allTicketTable.setAutoCreateRowSorter(true);
         allTicketTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Updated", "Assignee"
+                "Ticket Number", "Ticket Type", "Priority", "Department", "Date Updated", "Assignee", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1402,6 +1402,7 @@ public class MainMenu extends javax.swing.JFrame {
         String RevCount = "0";
         String Creator = getFirstname() + " " + getLastname();
         String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + AssignedDepartment + "'";
+        String notes = "";
         Object[] emplist = ticket.employeeList(param).toArray();
         assigneeComboBox1.setModel(new DefaultComboBoxModel(emplist));
         String AssignedPersonnel = assigneeComboBox1.getSelectedItem().toString();
@@ -1411,12 +1412,22 @@ public class MainMenu extends javax.swing.JFrame {
         String DateCreated = tstamp.toString();
         String DateUpdated = tstamp.toString();
         String Status = "Open";
-        Tickets information = new Tickets(TicketID, RevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+        Tickets information = new Tickets(TicketID, RevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, notes);
         ticket.addRow("alltickets", information);
         ticket.addRow("masterrecord", information);
         JOptionPane.showMessageDialog(null, "Ticket has been created. Your ticket number is " + TicketID + ".","Ticket Created",JOptionPane.INFORMATION_MESSAGE);
+        resetCreateFields();
     }//GEN-LAST:event_createTicketBttnActionPerformed
 
+    private void resetCreateFields(){
+        newTicketName.setText("");
+        createTicketTxtArea.setText("");
+        ticketTypeComboBox1.setSelectedIndex(0);
+        priorityComboBox1.setSelectedIndex(0);
+        depComboBox3.setSelectedIndex(0);
+        assigneeComboBox1.setSelectedIndex(0);
+    }
+    
     private void newTicketNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTicketNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newTicketNameActionPerformed
@@ -1842,7 +1853,7 @@ public class MainMenu extends javax.swing.JFrame {
     model = (DefaultTableModel) allTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : alltickets) {
-    model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
+    model.addRow(new Object[]{t.getId(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel(), t.getStatus()});
     }
     solvedtickets = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE Status = 'Closed'");
     model = (DefaultTableModel) solvedTicketsTable.getModel();
