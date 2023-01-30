@@ -1762,7 +1762,7 @@ public class MainMenu extends javax.swing.JFrame {
                 String OldRevCount = "";
                 int NewRevCount = 0;
                 String DateCreated = "";
-                String Creator = getFirstname() + " " + getLastname(); 
+                String Creator = ""; 
                 String Notes = ticketNotesTextArea.getText();
                 String person = "";
                 String dept = "";
@@ -1773,6 +1773,7 @@ public class MainMenu extends javax.swing.JFrame {
                 DateCreated = t.getDateCreated();
                 person = t.getPersonnel();
                 dept = t.getDepartment();
+                Creator = t.getCreator();
                 }
                 String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
                 String DateUpdated = tstamp.toString();
