@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -456,9 +457,9 @@ public class UpdateUser extends javax.swing.JFrame {
             String resi = resFld.getText();
             String dep = deptFld.getSelectedItem().toString();
             String pos = posFld.getText();
-            
+            List<String> array = List.of(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos); 
             boolean passAreEqual = pass.equals(conpass);
-            if (passAreEqual && emailAddCorFormat){ //add appropriate checks for user-provided data
+            if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid")){ //add appropriate checks for user-provided data
                 pass = hash.encrypt(pass);
                 String table = "credentials";
                 Data_Credentials creds = new Data_Credentials();
@@ -466,6 +467,9 @@ public class UpdateUser extends javax.swing.JFrame {
                 creds.editRow(table,information);
                 clearflds();
                 dispose();
+            }
+            else if (checkFields(array).equals("not valid")){
+                JOptionPane.showMessageDialog(null, "All fields must not be blank","Missing fields",JOptionPane.ERROR_MESSAGE);
             }
             else if (emailAddCorFormat == false){
                 JOptionPane.showMessageDialog(null, "The email provided is not acceptable","Email Not Accepted",JOptionPane.ERROR_MESSAGE);
@@ -478,6 +482,16 @@ public class UpdateUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UpdateAccountBttnActionPerformed
 
+    private String checkFields(List<String> strings){
+        for (String s : strings) {
+        if (s == null || s.isBlank()) {
+            System.out.println(s);
+            return "not valid";
+        }
+    }
+        return "valid";
+    }    
+    
     private void resetBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBttnActionPerformed
         // TODO add your handling code here:
         clearflds();

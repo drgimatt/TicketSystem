@@ -11,6 +11,7 @@ import Database.EncryptionDecryption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -421,64 +422,78 @@ public class NewUser extends javax.swing.JFrame {
             String pass = passFld.getText();
             
             
-// implement password encryption - passwords are not hashed on the database
-String conpass = passConFld.getText();
-String acttyp = acctypeSel.getSelectedItem().toString();
+        // implement password encryption - passwords are not hashed on the database
+        String conpass = passConFld.getText();
+        String acttyp = acctypeSel.getSelectedItem().toString();
 
-String bday = "";
-String sdate = "";
-int age = 0;
+        String bday = "";
+        String sdate = "";
+        int age = 0;
 
-try {
-    bday = dFormat.format(birthday.getDate());
-} catch (Exception ex) {
-    //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-    JOptionPane.showMessageDialog(null, "Birthdate was not provided.","Missing Birthdate",JOptionPane.ERROR_MESSAGE);
-    System.out.println("Blank field - Birthdate");
-}
-
-try {
-    sdate = dFormat.format(dateStart.getDate());
-} catch (Exception ex) {
-    //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-    JOptionPane.showMessageDialog(null, "Startdate was not provided.","Missing Startdate",JOptionPane.ERROR_MESSAGE);
-    System.out.println("Blank field - Birthdate");
-}
-
-try {
-    age = currYear - Integer.parseInt(birthYear.format(birthday.getDate()));
-} catch (Exception ex) {
-    //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-    System.out.println("Age cannot be computed");
-}
-
-String empnum = empIDFld.getText();
-
-String gender = genderFld.getText();
-String resi = resFld.getText();
-String dep = deptFld.getSelectedItem().toString();
-String pos = posFld.getText();
-
-boolean passAreEqual = pass.equals(conpass);
-if (passAreEqual && emailAddCorFormat){ //add appropriate checks for user-provided data
-    pass = hash.encrypt(pass);
-    String table = "credentials";
-    Data_Credentials creds = new Data_Credentials();
-    Credentials information = new Credentials (empnum,uname,pass,email,fname,mname,lname,age,bday,mnum,gender,resi,acttyp,sdate,dep,pos);
-    creds.addRow(table,information);
-    clearflds();
-}
-else if (emailAddCorFormat == false){
-    JOptionPane.showMessageDialog(null, "The email provided is not acceptable","Email Not Accepted",JOptionPane.ERROR_MESSAGE);
-}
-else if (passAreEqual == false){
-    JOptionPane.showMessageDialog(null, "The passwords entered don't match!","Password Mismatch",JOptionPane.ERROR_MESSAGE);
-}
+        try {
+            bday = dFormat.format(birthday.getDate());
         } catch (Exception ex) {
-            Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Birthdate was not provided.","Missing Birthdate",JOptionPane.ERROR_MESSAGE);
+            System.out.println("Blank field - Birthdate");
         }
+
+        try {
+            sdate = dFormat.format(dateStart.getDate());
+        } catch (Exception ex) {
+            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Startdate was not provided.","Missing Startdate",JOptionPane.ERROR_MESSAGE);
+            System.out.println("Blank field - Birthdate");
+        }
+
+        try {
+            age = currYear - Integer.parseInt(birthYear.format(birthday.getDate()));
+        } catch (Exception ex) {
+            //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Age cannot be computed");
+        }
+
+        String empnum = empIDFld.getText();
+
+        String gender = genderFld.getText();
+        String resi = resFld.getText();
+        String dep = deptFld.getSelectedItem().toString();
+        String pos = posFld.getText();
+
+        boolean passAreEqual = pass.equals(conpass);
+        List<String> array = List.of(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos);
+        if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid")){ //add appropriate checks for user-provided data
+            pass = hash.encrypt(pass);
+            String table = "credentials";
+            Data_Credentials creds = new Data_Credentials();
+            Credentials information = new Credentials (empnum,uname,pass,email,fname,mname,lname,age,bday,mnum,gender,resi,acttyp,sdate,dep,pos);
+            creds.addRow(table,information);
+            clearflds();
+        }
+        else if (checkFields(array).equals("not valid")){
+                JOptionPane.showMessageDialog(null, "All fields must not be blank","Missing fields",JOptionPane.ERROR_MESSAGE);
+        }        
+        else if (emailAddCorFormat == false){
+            JOptionPane.showMessageDialog(null, "The email provided is not acceptable","Email Not Accepted",JOptionPane.ERROR_MESSAGE);
+        }
+        else if (passAreEqual == false){
+            JOptionPane.showMessageDialog(null, "The passwords entered don't match!","Password Mismatch",JOptionPane.ERROR_MESSAGE);
+        }
+                } catch (Exception ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }//GEN-LAST:event_createAccountBttnActionPerformed
 
+    private String checkFields(List<String> strings){
+        for (String s : strings) {
+        if (s == null || s.isBlank()) {
+            System.out.println(s);
+            return "not valid";
+        }
+    }
+        return "valid";
+    }     
+    
     private void resetBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBttnActionPerformed
         // TODO add your handling code here:
         clearflds();
