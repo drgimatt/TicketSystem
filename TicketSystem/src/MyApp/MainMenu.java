@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -77,8 +78,7 @@ public class MainMenu extends javax.swing.JFrame {
     private Data_Credentials creds = new Data_Credentials();
     private ArrayList<Credentials> user;
     DefaultTableModel model;
-    List<String> array = new ArrayList<>();
-    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1506,7 +1506,7 @@ public class MainMenu extends javax.swing.JFrame {
         String DateCreated = tstamp.toString();
         String DateUpdated = tstamp.toString();
         String Status = "Open";
-        List<String> array = List.of(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+        List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
         ;
         if (checkFields(array).equals("not valid")){
             JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1593,7 +1593,7 @@ public class MainMenu extends javax.swing.JFrame {
         String DateUpdated = tstamp.toString();
         String Status = "Open";
         int followup = 0;
-        List<String> array = List.of(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+        List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
         if (checkFields(array).equals("valid")){
         Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
         ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
@@ -1680,7 +1680,7 @@ public class MainMenu extends javax.swing.JFrame {
                 String DateUpdated = tstamp.toString();
                 String Status = "Closed";
                 int followup = 0;
-                List<String> array = List.of(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+                List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
                 if (checkFields(array).equals("valid")){
                 Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
                 ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");

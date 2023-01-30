@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -462,7 +463,7 @@ public class NewUser extends javax.swing.JFrame {
         String pos = posFld.getText();
 
         boolean passAreEqual = pass.equals(conpass);
-        List<String> array = List.of(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos);
+        List<String> array = Arrays.asList(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos);
         if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid")){ //add appropriate checks for user-provided data
             pass = hash.encrypt(pass);
             String table = "credentials";
