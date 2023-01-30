@@ -1657,7 +1657,7 @@ public class MainMenu extends javax.swing.JFrame {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String TicketID = ticketNumberLbl4.getText();
         ArrayList<Tickets> ticketinfo;
-        String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + TicketID + "'";
+        String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + TicketID + "'";
         ticketinfo = ticket.ShowRecSpec(parameters);
         String TicketName = ticketNameTxtField.getText();
         String TicketDesc = ticketTxtArea.getText();
