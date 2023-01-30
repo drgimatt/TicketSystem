@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -1504,13 +1505,31 @@ public class MainMenu extends javax.swing.JFrame {
         String DateCreated = tstamp.toString();
         String DateUpdated = tstamp.toString();
         String Status = "Open";
+        List<String> array = List.of(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+        ;
+        if (checkFields(array).equals("not valid")){
+            JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
         Tickets information = new Tickets(TicketID, RevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, notes, followup);
         ticket.addRow("alltickets", information);
         ticket.addRow("masterrecord", information);
         JOptionPane.showMessageDialog(null, "Ticket has been created. Your ticket number is " + TicketID + ".","Ticket Created",JOptionPane.INFORMATION_MESSAGE);
-        resetCreateFields();
+        resetCreateFields();                
+        }
     }//GEN-LAST:event_createTicketBttnActionPerformed
     }
+    
+    private String checkFields(List<String> strings){
+        for (String s : strings) {
+        if (s == null || s.isBlank()) {
+            System.out.println(s);
+            return "not valid";
+        }
+    }
+        return "valid";
+    }
+    
     private void resetCreateFields(){
         newTicketName.setText("");
         createTicketTxtArea.setText("");
@@ -1573,6 +1592,8 @@ public class MainMenu extends javax.swing.JFrame {
         String DateUpdated = tstamp.toString();
         String Status = "Open";
         int followup = 0;
+        List<String> array = List.of(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+        if (checkFields(array).equals("valid")){
         Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
         ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
         ticket.addRow("alltickets", information);
@@ -1584,7 +1605,10 @@ public class MainMenu extends javax.swing.JFrame {
         model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
         }
         updateTableDisplay();
-        JOptionPane.showMessageDialog(null, "Ticket has been updated","Ticket Updated",JOptionPane.INFORMATION_MESSAGE);              
+        JOptionPane.showMessageDialog(null, "Ticket has been updated","Ticket Updated",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+        JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_updateTicketButtonActionPerformed
 
     private void depComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depComboBoxActionPerformed
@@ -1655,6 +1679,8 @@ public class MainMenu extends javax.swing.JFrame {
                 String DateUpdated = tstamp.toString();
                 String Status = "Closed";
                 int followup = 0;
+                List<String> array = List.of(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+                if (checkFields(array).equals("valid")){
                 Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
                 ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
                 ticket.addRow("alltickets", information);
@@ -1672,6 +1698,9 @@ public class MainMenu extends javax.swing.JFrame {
                 parentPanel.repaint();
                 parentPanel.revalidate();
                 updateTableDisplay();                
+                } else{
+                JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
     }//GEN-LAST:event_closeTicketButtonActionPerformed
 

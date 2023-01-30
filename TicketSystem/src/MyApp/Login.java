@@ -143,7 +143,7 @@ public class Login extends javax.swing.JFrame {
         String password = passwordFld.getText();
 
         // Check if the username and password fields are not blank
-        if (username.equals("") || password.equals("")) {
+        if (username.isBlank() || password.isBlank()) {
             JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
                 try {
