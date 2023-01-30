@@ -615,7 +615,7 @@ public class UpdateUser extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             ArrayList<Credentials> userinfo;
             Data_Credentials creds = new Data_Credentials();
-            String parameters = "credentials WHERE num = '" + t + "'";
+            String parameters = "credentials WHERE empnum = '" + t + "'";
             userinfo = creds.ShowRec(parameters);
             for(Credentials u: userinfo){
                 empIDFld.setText(u.getEmpnum());

@@ -386,11 +386,11 @@ public class MainMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Employee ID", "First Name", "Middle Name", "Last Name", "Mobile #", "Email", "Birthday", "Account Type", "Department", "Position", "Start Date", "Gender"
+                "Employee ID", "First Name", "Middle Name", "Last Name", "Mobile #", "Email", "Birthday", "Account Type", "Department", "Position", "Start Date", "Gender"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -400,10 +400,8 @@ public class MainMenu extends javax.swing.JFrame {
         userManagerTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane7.setViewportView(userManagerTable);
         if (userManagerTable.getColumnModel().getColumnCount() > 0) {
-            userManagerTable.getColumnModel().getColumn(0).setMinWidth(5);
-            userManagerTable.getColumnModel().getColumn(0).setPreferredWidth(30);
-            userManagerTable.getColumnModel().getColumn(3).setPreferredWidth(100);
-            userManagerTable.getColumnModel().getColumn(8).setPreferredWidth(100);
+            userManagerTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            userManagerTable.getColumnModel().getColumn(7).setPreferredWidth(100);
         }
 
         createUserButton.setBackground(new java.awt.Color(0, 153, 51));
@@ -1480,7 +1478,6 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_createTicketActionPerformed
 
     private void logoutBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBttnActionPerformed
-
         int ans = JOptionPane.showOptionDialog(this,"Do you want to logoff?", "Logout User", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
         if (ans == JOptionPane.YES_OPTION){
             login = new Login();
@@ -1748,7 +1745,7 @@ public class MainMenu extends javax.swing.JFrame {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 String TicketID = ticketNumberLbl4.getText();
                 ArrayList<Tickets> ticketinfo;
-                String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + TicketID + "'";
+                String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + TicketID + "'";
                 ticketinfo = ticket.ShowRecSpec(parameters);
                 String TicketName = ticketNameTxtField.getText();
                 String TicketDesc = ticketTxtArea.getText();
@@ -1838,7 +1835,7 @@ public class MainMenu extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             ArrayList<Tickets> ticketinfo;
             Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
+            String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + id + "'";
             ticketinfo = ticket.ShowRecSpec(parameters);
             ticketNumberLbl4.setText(id);
             ticketTypeComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,1).toString());
@@ -1891,7 +1888,7 @@ public class MainMenu extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             ArrayList<Tickets> ticketinfo;
             Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
+            String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + id + "'";
             ticketinfo = ticket.ShowRecSpec(parameters);
             ticketNumberLbl4.setText(id);
             ticketTypeComboBox.setSelectedItem(allTicketTable.getValueAt(selectedRow,1).toString());
@@ -2202,7 +2199,7 @@ public class MainMenu extends javax.swing.JFrame {
     model = (DefaultTableModel) userManagerTable.getModel();
     model.setRowCount(0);
     for(Credentials u: user) {    
-    model.addRow(new Object[] {u.getNum(),u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
+    model.addRow(new Object[] {u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
     }
     alltickets = mySql.ShowRecSpec("SELECT m1.* FROM masterrecord m1 LEFT JOIN masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL ORDER BY TicketID DESC");
     model = (DefaultTableModel) allTicketTable.getModel();
@@ -2216,7 +2213,7 @@ public class MainMenu extends javax.swing.JFrame {
     for (Tickets t : followuptickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated(), t.getDateUpdated()});
     }
-    solvedtickets = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE Status = 'Closed'");
+    solvedtickets = mySql.ShowRecSpec("SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING Status = 'Closed';");
     model = (DefaultTableModel) solvedTicketsTable.getModel();
     model.setRowCount(0);
     for (Tickets t : solvedtickets) {
