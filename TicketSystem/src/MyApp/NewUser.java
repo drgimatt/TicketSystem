@@ -8,7 +8,6 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import Database.Credentials;
 import Database.Data_Credentials;
 import Database.EncryptionDecryption;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
@@ -463,8 +462,8 @@ public class NewUser extends javax.swing.JFrame {
         String pos = posFld.getText();
 
         boolean passAreEqual = pass.equals(conpass);
-        List<String> array = Arrays.asList(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos);
-        if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid")){ //add appropriate checks for user-provided data
+        List<String> array = Arrays.asList(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos, bday, sdate);
+        if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid") ){ //add appropriate checks for user-provided data
             pass = hash.encrypt(pass);
             String table = "credentials";
             Data_Credentials creds = new Data_Credentials();

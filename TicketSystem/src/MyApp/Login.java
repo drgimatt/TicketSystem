@@ -4,7 +4,6 @@
  */
 package MyApp;
 
-import Database.Credentials;
 import Database.Data_Credentials;
 import Database.EncryptionDecryption;
 import Database.MySQLConnector;
@@ -12,11 +11,9 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -162,12 +159,13 @@ public class Login extends javax.swing.JFrame {
                             String fname = myRes.getString(6);
                             String lname = myRes.getString(8);
                             String dept = myRes.getString(16);
+                            String emp = myRes.getString(2);
                             System.out.println(acctype);
                             System.out.println(fname);
                             System.out.println(lname);
                             System.out.println(dept);                            
                             if (acctype.equals("Administrator") || acctype.equals("Employee")) {
-                                MainMenu user = new MainMenu(acctype,fname,lname,dept);
+                                MainMenu user = new MainMenu(acctype,fname,lname,dept,emp);
                                 user.show();
                             }
                             dispose();

@@ -49,11 +49,12 @@ public class MainMenu extends javax.swing.JFrame {
         solvedTicketsTable.setAutoCreateRowSorter(true);
     }
 
-    public MainMenu(String acctype, String firstname, String lastname, String department) {
+    public MainMenu(String acctype, String firstname, String lastname, String department, String empid) {
         this.acctype = acctype;
         this.firstname = firstname;
         this.lastname = lastname;
         this.department = department;
+        this.empid = empid;
         initComponents();
         FrameCenter.centerJFrame(this);
         setResizable(false);
@@ -72,7 +73,7 @@ public class MainMenu extends javax.swing.JFrame {
     NewUser newUser;
     UpdateUser updateUser;
     MySQLConnector connector;
-    private String acctype, firstname, lastname, department;
+    private String acctype, firstname, lastname, department, empid;
     private Data_Tickets mySql = new Data_Tickets();
     private ArrayList<Tickets> alltickets, solvedtickets, assignedtickets, mytickets, tickethistory, followuptickets;
     private Data_Credentials creds = new Data_Credentials();
@@ -750,7 +751,6 @@ public class MainMenu extends javax.swing.JFrame {
         depComboBox3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         depComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         depComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing", "Administration" }));
-        depComboBox3.setSelectedIndex(-1);
         depComboBox3.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         depComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -952,7 +952,6 @@ public class MainMenu extends javax.swing.JFrame {
         depComboBox.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         depComboBox.setForeground(new java.awt.Color(255, 255, 255));
         depComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing", "Administration" }));
-        depComboBox.setSelectedIndex(-1);
         depComboBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         depComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1444,8 +1443,12 @@ public class MainMenu extends javax.swing.JFrame {
         if (userManagerTable.getSelectedRowCount()==1){
             int ans = JOptionPane.showOptionDialog(this,"Are you sure you want to delete this entry?", "Delete User", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
             if (ans == JOptionPane.YES_OPTION){
+            if(userManagerTable.getValueAt(userManagerTable.getSelectedRow(), 1).toString().equals(empid)){    
+                JOptionPane.showMessageDialog(null, "Credential deletion aborted. You tried to delete your own record", "Error", JOptionPane.ERROR_MESSAGE);
+            }           
+            else{ 
             creds.deleteRowSpec(userManagerTable.getValueAt(userManagerTable.getSelectedRow(), 0).toString());
-            updateTableDisplay();
+            updateTableDisplay();}
             }
         } else {
             if (userManagerTable.getRowCount()==0){
@@ -1460,13 +1463,24 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         model = (DefaultTableModel) userManagerTable.getModel();
         int selectedRow = userManagerTable.getSelectedRow();
-        updateUser = new UpdateUser();
-        updateUser.setVisible(true);
+        if (userManagerTable.getSelectedRowCount()==1){
+            updateUser = new UpdateUser();
+            updateUser.setVisible(true);        
         try {
             updateUser.populateflds((userManagerTable.getValueAt(selectedRow, 0).toString()));
         } catch (ParseException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
+        } else {
+            if (userManagerTable.getRowCount()==0){
+                JOptionPane.showMessageDialog(this, "Table is empty.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a row to update.");
+            }
+        }        
+        
+        
+        
     }//GEN-LAST:event_updateUserButtonActionPerformed
 
     private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButtonActionPerformed
@@ -2055,11 +2069,20 @@ public class MainMenu extends javax.swing.JFrame {
         return department;
     }
 
+    public String getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(String empid) {
+        this.empid = empid;
+    }
+    
     protected void setInterface(String x) {
         System.out.println("User Type: " + x);
-        System.out.println("First Name:" + getFirstname());
-        System.out.println("Last Name:" + getLastname());
-        System.out.println("Department:" + getDepartment());        
+        System.out.println("First Name: " + getFirstname());
+        System.out.println("Last Name: " + getLastname());
+        System.out.println("Department: " + getDepartment());
+        System.out.println("Employee ID: " + getEmpid());
         if ("Employee".equals(x)) {
             manageUserButton.setVisible(false);
             assigneeComboBox1.setVisible(false);

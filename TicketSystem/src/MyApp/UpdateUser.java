@@ -458,7 +458,7 @@ public class UpdateUser extends javax.swing.JFrame {
             String resi = resFld.getText();
             String dep = deptFld.getSelectedItem().toString();
             String pos = posFld.getText();
-            List<String> array = Arrays.asList(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos); 
+            List<String> array = Arrays.asList(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos, sdate, bday); 
             boolean passAreEqual = pass.equals(conpass);
             if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid")){ //add appropriate checks for user-provided data
                 pass = hash.encrypt(pass);
