@@ -506,33 +506,33 @@ public class MainMenu extends javax.swing.JFrame {
         myTicketTable.setAutoCreateRowSorter(true);
         myTicketTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket Number", "Ticket Title", "Ticket Type", "Priority", "Department", "Date Created", "Date Updated"
+                "Ticket Number", "Ticket Title", "Ticket Type", "Priority", "Department", "Date Created", "Date Updated", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1162,7 +1162,15 @@ public class MainMenu extends javax.swing.JFrame {
             new String [] {
                 "Revision #", "Date Updated", "Status", "Department", "Personnel", "Priority"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         ticketHistoryTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         ticketHistoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1226,7 +1234,7 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ticketNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1659,13 +1667,14 @@ public class MainMenu extends javax.swing.JFrame {
         String OldRevCount = "";
         int NewRevCount = 0;
         String DateCreated = "";
-        String Creator = getFirstname() + " " + getLastname();
+        String Creator = "";
         String Notes = ticketNotesTextArea.getText();
         for (Tickets t: ticketinfo){
         OldRevCount = Integer.toString(t.getRevcount());
         int increment = t.getRevcount()+1;        
         NewRevCount = increment;
         DateCreated = t.getDateCreated();
+        Creator = t.getCreator();
         }
         System.out.println(OldRevCount);
         System.out.println(NewRevCount);
@@ -1922,7 +1931,6 @@ public class MainMenu extends javax.swing.JFrame {
            
         });         
         if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3 && allTicketTable.getSelectedRow() != -1){
-            System.out.println("Right button clicked");
             if(getAcctype().equals("Administrator")){
                 userPop.add(modifyTicket);
             }
@@ -1952,8 +1960,13 @@ public class MainMenu extends javax.swing.JFrame {
         if (myTicketTable.getSelectedRowCount()==1){
             int ans = JOptionPane.showOptionDialog(this,"Followup this ticket?", "Followup Ticket", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
             if (ans == JOptionPane.YES_OPTION){
+            if (myTicketTable.getValueAt(myTicketTable.getSelectedRow(), 7).toString().equals("Closed")){
+            JOptionPane.showMessageDialog(null, "This ticket has already been marked as closed.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
             mySql.editRowFollowup("alltickets", "1" ,myTicketTable.getValueAt(myTicketTable.getSelectedRow(), 0).toString());
             updateTableDisplay();
+            }
             }
         } else {
             if (myTicketTable.getRowCount()==0){
@@ -2219,7 +2232,7 @@ public class MainMenu extends javax.swing.JFrame {
     model = (DefaultTableModel) myTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : mytickets) {
-    model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
+    model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated(), t.getStatus()});
     } 
     }
 }
