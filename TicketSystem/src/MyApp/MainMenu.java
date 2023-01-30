@@ -750,6 +750,7 @@ public class MainMenu extends javax.swing.JFrame {
         depComboBox3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         depComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         depComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing", "Administration" }));
+        depComboBox3.setSelectedIndex(-1);
         depComboBox3.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         depComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -951,6 +952,7 @@ public class MainMenu extends javax.swing.JFrame {
         depComboBox.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         depComboBox.setForeground(new java.awt.Color(255, 255, 255));
         depComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing", "Administration" }));
+        depComboBox.setSelectedIndex(-1);
         depComboBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         depComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1496,8 +1498,8 @@ public class MainMenu extends javax.swing.JFrame {
         String AssignedPersonnel = "";
         int followup = 0;
         Object[] emplist = ticket.employeeList(param).toArray();
-        assigneeComboBox1.setModel(new DefaultComboBoxModel(emplist));if(getAcctype().equals("Employee")){
-        if(getAcctype().equals("Administrator")){
+        assigneeComboBox1.setModel(new DefaultComboBoxModel(emplist));
+        if(acctype.equals("Administrator")){
         AssignedPersonnel = assigneeComboBox1.getSelectedItem().toString();
         }
         else{
@@ -1507,7 +1509,7 @@ public class MainMenu extends javax.swing.JFrame {
         String DateUpdated = tstamp.toString();
         String Status = "Open";
         List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
-        ;
+        
         if (checkFields(array).equals("not valid")){
             JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -1519,7 +1521,7 @@ public class MainMenu extends javax.swing.JFrame {
         resetCreateFields();                
         }
     }//GEN-LAST:event_createTicketBttnActionPerformed
-    }
+    
     
     private String checkFields(List<String> strings){
         for (String s : strings) {
@@ -1854,11 +1856,11 @@ public class MainMenu extends javax.swing.JFrame {
         if (requestsTicketTable.getSelectedRowCount()==1){
             int ans = JOptionPane.showOptionDialog(this,"Mark this entry as read?", "Mark as read", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
             if (ans == JOptionPane.YES_OPTION){
-            mySql.editRowFollowup("alltickets","0",requestsTicketTable.getValueAt(userManagerTable.getSelectedRow(), 0).toString());
+            mySql.editRowFollowup("alltickets","0",requestsTicketTable.getValueAt(requestsTicketTable.getSelectedRow(), 0).toString());
             updateTableDisplay();
             }
         } else {
-            if (userManagerTable.getRowCount()==0){
+            if (requestsTicketTable.getRowCount()==0){
                 JOptionPane.showMessageDialog(this, "Table is empty.");
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a row to mark.");
@@ -1871,11 +1873,11 @@ public class MainMenu extends javax.swing.JFrame {
         if (myTicketTable.getSelectedRowCount()==1){
             int ans = JOptionPane.showOptionDialog(this,"Followup this ticket?", "Followup Ticket", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
             if (ans == JOptionPane.YES_OPTION){
-            mySql.editRowFollowup("alltickets", "1" ,requestsTicketTable.getValueAt(userManagerTable.getSelectedRow(), 0).toString());
+            mySql.editRowFollowup("alltickets", "1" ,myTicketTable.getValueAt(myTicketTable.getSelectedRow(), 0).toString());
             updateTableDisplay();
             }
         } else {
-            if (userManagerTable.getRowCount()==0){
+            if (myTicketTable.getRowCount()==0){
                 JOptionPane.showMessageDialog(this, "Table is empty.");
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a row to followup.");
