@@ -13,7 +13,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
  * @author boxro
  */
 public class MySQLConnector {
-    String addr = "112.205.150.129:3310/ticketsys";
+    String addr = "112.205.139.86:3310/ticketsys";
     String address = "jdbc:mysql://" + addr ;//+ "?enabledTLSProtocols=TLSv1.2&autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
     String user = "admin";
     String pass = "titingkayad";
