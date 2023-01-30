@@ -1189,7 +1189,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="7">
+                      <StringArray count="8">
                         <StringItem index="0" value="Technical"/>
                         <StringItem index="1" value="Financial"/>
                         <StringItem index="2" value="Operations"/>
@@ -1197,6 +1197,7 @@
                         <StringItem index="4" value="Engineering"/>
                         <StringItem index="5" value="Logistics"/>
                         <StringItem index="6" value="Marketing"/>
+                        <StringItem index="7" value="Administration"/>
                       </StringArray>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1597,7 +1598,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="7">
+                      <StringArray count="8">
                         <StringItem index="0" value="Technical"/>
                         <StringItem index="1" value="Financial"/>
                         <StringItem index="2" value="Operations"/>
@@ -1605,6 +1606,7 @@
                         <StringItem index="4" value="Engineering"/>
                         <StringItem index="5" value="Logistics"/>
                         <StringItem index="6" value="Marketing"/>
+                        <StringItem index="7" value="Administration"/>
                       </StringArray>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

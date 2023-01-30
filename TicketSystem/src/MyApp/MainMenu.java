@@ -749,7 +749,7 @@ public class MainMenu extends javax.swing.JFrame {
         depComboBox3.setBackground(new java.awt.Color(0, 102, 204));
         depComboBox3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         depComboBox3.setForeground(new java.awt.Color(255, 255, 255));
-        depComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing" }));
+        depComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing", "Administration" }));
         depComboBox3.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         depComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -950,7 +950,7 @@ public class MainMenu extends javax.swing.JFrame {
         depComboBox.setBackground(new java.awt.Color(0, 102, 204));
         depComboBox.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         depComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        depComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing" }));
+        depComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Financial", "Operations", "Legal", "Engineering", "Logistics", "Marketing", "Administration" }));
         depComboBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         depComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
