@@ -1684,7 +1684,6 @@ public class MainMenu extends javax.swing.JFrame {
                 if (checkFields(array).equals("valid")){
                 Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
                 ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
-                ticket.addRow("alltickets", information);
                 ticket.addRow("masterrecord", information);
                 tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount ASC");
                 model = (DefaultTableModel) ticketHistoryTable.getModel();

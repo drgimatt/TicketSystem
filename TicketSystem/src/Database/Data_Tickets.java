@@ -140,7 +140,7 @@ public class Data_Tickets implements Data<Tickets> {
             String qry = "INSERT INTO " + table + "(TicketID, RevisionCount, SubjectTitle, SubjectDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, FollowUp)" +  " VALUES ('" + ticket.getId() + "', '" + ticket.getRevcount() +"', '" + ticket.getTitle() + "', '" + ticket.getDesc() + "', '" + ticket.getType() + "', '" + ticket.getPriority() + "', '" + ticket.getDepartment() + "', '" + ticket.getPersonnel() + "' ,'" + ticket.getDateCreated() + "', '" + ticket.getDateUpdated() + "', '"+ ticket.getStatus() + "', '" + ticket.getCreator() + "', '" + ticket.getNotes()+ "', '" + ticket.getFollowup() + "')";
             System.out.println(qry);
             myStmt.executeUpdate(qry);
-            JOptionPane.showMessageDialog(null, "Entry added");            
+            System.out.println("Entry added");            
         }
         catch (SQLException ex)
         {
@@ -165,7 +165,7 @@ public class Data_Tickets implements Data<Tickets> {
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
-            JOptionPane.showMessageDialog(null, "Entry updated");            
+            System.out.println("Entry updated");            
         }
         catch (SQLException ex)
         {
@@ -191,7 +191,7 @@ public class Data_Tickets implements Data<Tickets> {
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
-            JOptionPane.showMessageDialog(null, "Entry updated");            
+            System.out.println("Entry updated");            
         }
         catch (SQLException ex)
         {
@@ -216,7 +216,7 @@ public class Data_Tickets implements Data<Tickets> {
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
-            JOptionPane.showMessageDialog(null, "Entry deleted");            
+            System.out.println("Entry deleted");           
         }
         catch (SQLException ex)
         {
@@ -241,7 +241,7 @@ public class Data_Tickets implements Data<Tickets> {
             System.out.println(qry);
             myStmt.executeUpdate(qry);
             myStmt.close();
-            JOptionPane.showMessageDialog(null, "Entry deleted");            
+            System.out.println("Entry deleted");           
         }
         catch (SQLException ex)
         {
