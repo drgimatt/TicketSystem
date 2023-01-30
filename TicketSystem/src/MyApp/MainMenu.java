@@ -1522,7 +1522,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     private String checkFields(List<String> strings){
         for (String s : strings) {
-        if (s == null || s.isBlank()) {
+        if (s == null || s.trim().isEmpty()) {
             System.out.println(s);
             return "not valid";
         }
