@@ -1665,6 +1665,8 @@ public class MainMenu extends javax.swing.JFrame {
         int NewRevCount = 0;
         String DateCreated = "";
         String Creator = "";
+        String person = "";
+        String dept = "";
         String Notes = ticketNotesTextArea.getText();
         for (Tickets t: ticketinfo){
         OldRevCount = Integer.toString(t.getRevcount());
@@ -1672,6 +1674,7 @@ public class MainMenu extends javax.swing.JFrame {
         NewRevCount = increment;
         DateCreated = t.getDateCreated();
         Creator = t.getCreator();
+        person = t.getPersonnel();
         }
         System.out.println(OldRevCount);
         System.out.println(NewRevCount);
@@ -1680,6 +1683,10 @@ public class MainMenu extends javax.swing.JFrame {
         String DateUpdated = tstamp.toString();
         String Status = "Open";
         int followup = 0;
+        if(getAcctype().equals("Employee")){
+        AssignedPersonnel = person;
+        AssignedDepartment = dept;
+        }
         List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
         if (checkFields(array).equals("valid")){
         Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
@@ -1757,16 +1764,24 @@ public class MainMenu extends javax.swing.JFrame {
                 String DateCreated = "";
                 String Creator = getFirstname() + " " + getLastname(); 
                 String Notes = ticketNotesTextArea.getText();
+                String person = "";
+                String dept = "";
                 for (Tickets t: ticketinfo){
                 OldRevCount = Integer.toString(t.getRevcount());
                 int increment = t.getRevcount()+1;        
                 NewRevCount = increment;
                 DateCreated = t.getDateCreated();
+                person = t.getPersonnel();
+                dept = t.getDepartment();
                 }
                 String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
                 String DateUpdated = tstamp.toString();
                 String Status = "Closed";
                 int followup = 0;
+                if(getAcctype().equals("Employee")){
+                AssignedPersonnel = person;
+                AssignedDepartment = dept;
+                }
                 List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
                 if (checkFields(array).equals("valid")){
                 Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
@@ -2185,9 +2200,11 @@ public class MainMenu extends javax.swing.JFrame {
         if ("Employee".equals(x)) {
             manageUserButton.setVisible(false);
             assigneeComboBox1.setVisible(false);
-            assigneeComboBox.enable(false);
-            depComboBox.enable(false);
+            assigneeComboBox.setVisible(false);
+            depComboBox.setVisible(false);
             jLabel17.setVisible(false);
+            jLabel28.setVisible(false);
+            jLabel29.setVisible(false);
         }
         if ("Administrator".equals(x)) {
             manageUserButton.setVisible(true);
