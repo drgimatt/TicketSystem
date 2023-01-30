@@ -11,6 +11,7 @@ import Database.EncryptionDecryption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class NewUser extends javax.swing.JFrame {
     }
     
     Login login;
-    
+    List<String> array = new ArrayList<>();
 
     /**
      * This method is called from within the constructor to initialize the form.

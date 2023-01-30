@@ -77,6 +77,7 @@ public class MainMenu extends javax.swing.JFrame {
     private Data_Credentials creds = new Data_Credentials();
     private ArrayList<Credentials> user;
     DefaultTableModel model;
+    List<String> array = new ArrayList<>();
     
 
     /**
